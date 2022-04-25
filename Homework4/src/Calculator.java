@@ -107,10 +107,11 @@ public class Calculator {
         }
         return stack.pollLast();
     }
-    public boolean isEqual(double a,double b)
-    {
-        return Math.abs(a-b)<0.00001;
+
+    public boolean isEqual(double a, double b) {
+        return Math.abs(a - b) < 0.00001;
     }
+
     public double getFormulaResult(String inputstr) {
         return getResult(MidtoLast(inputstr));
     }
