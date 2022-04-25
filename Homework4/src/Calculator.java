@@ -22,15 +22,15 @@ public class Calculator {
     private static void setMap(Map<Character, Integer> icp, Map<Character, Integer> isp) {
         icp.put('#', 0);
         icp.put('(', 6);
-        icp.put('*', 4);
-        icp.put('/', 4);
+        icp.put('×', 4);
+        icp.put('÷', 4);
         icp.put('+', 2);
         icp.put('-', 2);
         icp.put(')', 1);
         isp.put('#', 0);
         isp.put('(', 1);
-        isp.put('*', 5);
-        isp.put('/', 5);
+        isp.put('×', 5);
+        isp.put('÷', 5);
         isp.put('+', 3);
         isp.put('-', 3);
         isp.put(')', 6);
@@ -84,11 +84,11 @@ public class Calculator {
                 BigDecimal A = new BigDecimal(a);
                 double c = 0;
                 switch (str.charAt(0)) {
-                    case '*':
+                    case '×':
                         c = B.multiply(A).doubleValue();
                         stack.addLast(c);
                         break;
-                    case '/':
+                    case '÷':
                         c = A.divide(B, 30, BigDecimal.ROUND_HALF_UP).doubleValue();
                         stack.addLast(c);
                         break;

@@ -9,7 +9,7 @@ public class Questioner {
             System.out.println(questioner.questionWithParentheses(true, 100));
     }
 
-    public static List<Character> randomList = Arrays.asList('/', '*', '+', '-');
+    public static List<Character> randomList = Arrays.asList('×', '÷', '+', '-');
 
     public double randomDigit(boolean hasPoint, double upper) {
         Random random = new Random();
