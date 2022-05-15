@@ -1,6 +1,9 @@
 package com.software.homework5.EX;
 
+import java.io.Serial;
+
 public class UsernameDuplicateException extends ServiceException{
+    @Serial
     private static final long serialVersionUID = -5135645126761115446L;
 
     public UsernameDuplicateException() {

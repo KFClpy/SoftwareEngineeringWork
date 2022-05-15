@@ -1,7 +1,10 @@
 package com.software.homework5.EX;
 
+import java.io.Serial;
+
 public class UsernotfoundException extends ServiceException{
 
+    @Serial
     private static final long serialVersionUID = -6759019154986630575L;
     public UsernotfoundException() {
         super();

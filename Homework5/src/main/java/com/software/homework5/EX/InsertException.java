@@ -1,6 +1,9 @@
 package com.software.homework5.EX;
 
+import java.io.Serial;
+
 public class InsertException extends ServiceException{
+    @Serial
     private static final long serialVersionUID = -3616160497168012088L;
 
     public InsertException() {

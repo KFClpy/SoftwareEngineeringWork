@@ -19,7 +19,7 @@ public class ServiceTest {
     @Test
     public void searchInfoTest()
     {
-        JSONObject obj=infoService.searchInfo(16,7);
+        JSONObject obj=infoService.searchInfo(16,8);
         System.out.println(obj);
     }
     @Test

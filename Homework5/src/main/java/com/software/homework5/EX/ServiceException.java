@@ -1,7 +1,10 @@
 package com.software.homework5.EX;
 
 
+import java.io.Serial;
+
 public class ServiceException extends RuntimeException{
+    @Serial
     private static final long serialVersionUID = -2458056813173628011L;
 
     public ServiceException() {

@@ -1,6 +1,9 @@
 package com.software.homework5.EX;
 
+import java.io.Serial;
+
 public class PasswordNotMatchException extends ServiceException{
+    @Serial
     private static final long serialVersionUID = 121611732685756651L;
     public PasswordNotMatchException() {
         super();
