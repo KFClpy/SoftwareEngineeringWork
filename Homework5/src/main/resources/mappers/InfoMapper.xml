@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
+        "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper  namespace="com.software.homework5.Dao.InfoMapper">
+    <resultMap type="com.software.homework5.Entity.Info" id="InfoEntityMap">
+        <id column="mid" property="mid"/>
+        <result column="name" property="name"/>
+        <result column="gender" property="gender"/>
+        <result column="phone" property="phone"/>
+        <result column="email" property="email"/>
+        <result column="uid" property="uid"/>
+    </resultMap>
+    <insert id="insert" useGeneratedKeys="true" keyProperty="mid">
+        INSERT INTO m_info (
+            name,gender,phone,email,uid
+        ) VALUES (
+                     #{name}, #{gender},#{phone}, #{email},#{uid}
+        )
+    </insert>
+    <update id="updateByMid">
+        UPDATE
+            m_info
+        SET
+            name=#{name},
+            gender=#{gender},
+            phone=#{phone},
+            email=#{email}
+        WHERE
+            mid=#{mid}
+    </update>
+    <delete id="delete">
+        delete from m_info where mid=#{mid}
+    </delete>
+    <select id="findByUid" resultMap="InfoEntityMap">
+        select * from m_info where uid=#{uid}
+    </select>
+    <select id="findByMid" resultMap="InfoEntityMap">
+        select *  from (
+                     select * from m_info where uid=#{uid}
+                         ) as a1 where mid=#{mid}
+    </select>
+
+
+</mapper>
