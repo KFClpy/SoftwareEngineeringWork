@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface InfoMapper {
     Integer insert(Info info);
-    List<Info> findByUid(Integer uid);
+    List<Info> findByUserName(String username);
     Integer delete(Integer mid);
     Integer updateByMid(
             @Param("mid") Integer mid,
@@ -16,5 +16,5 @@ public interface InfoMapper {
             @Param("phone") String phone,
             @Param("email") String email
     );
-    List<Info> findByMid(Integer uid,Integer mid);
+    List<Info> findByMid(String username,Integer mid);
 }

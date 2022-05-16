@@ -1,9 +1,12 @@
 package com.software.homework5.Service;
 
 import com.alibaba.fastjson.JSONObject;
+import com.software.homework5.Entity.Info;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+
+import java.util.List;
 
 @SpringBootTest
 public class ServiceTest {
@@ -13,25 +16,25 @@ public class ServiceTest {
     @Test
     public void getInfoTest()
     {
-        JSONObject obj=infoService.getInfoTable(7);
-        System.out.println(obj);
+        List<Info> list=infoService.getInfoTable("7");
+        System.out.println(list);
     }
     @Test
     public void searchInfoTest()
     {
-        JSONObject obj=infoService.searchInfo(16,8);
-        System.out.println(obj);
+        List<Info> list=infoService.searchInfo(18,"7");
+        System.out.println(list);
     }
     @Test
     public void deleteInfoTest()
     {
-        JSONObject obj=infoService.deleteInfo(16,7);
-        System.out.println(obj);
+        List<Info> list=infoService.deleteInfo(18,"7");
+        System.out.println(list);
     }
     @Test
     public void addInfoTest()
     {
-        JSONObject obj=infoService.addInfo(7,"刘洋",0,"1384013213","22972@qq.com");
-        System.out.println(obj);
+        List<Info> list=infoService.addInfo("lty","刘洋",0,"1384013213","22972@qq.com");
+        System.out.println(list);
     }
 }

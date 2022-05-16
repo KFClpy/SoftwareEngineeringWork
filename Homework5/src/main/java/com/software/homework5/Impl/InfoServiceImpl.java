@@ -15,38 +15,36 @@ import java.util.List;
 public class InfoServiceImpl implements InfoService {
     @Autowired
     InfoMapper infoMapper;
-    public JSONObject getInfoTable(Integer uid)
+    public List<Info> getInfoTable(String username)
     {
         JSONObject obj=new JSONObject();
-        List<Info> list=infoMapper.findByUid(uid);
-        obj.put("InfoTable",list);
-        return obj;
+        return infoMapper.findByUserName(username);
     }
-    public JSONObject updateInfo(Integer mid,Integer uid,String name,Integer render,String phone,String email)
+    public List<Info> updateInfo(Integer mid,String username,String name,Integer render,String phone,String email)
     {
         Integer rows=infoMapper.updateByMid(mid,name,render,phone,email);
         if(rows!=1)
         {
             throw new UpdateException("更新信息失败");
         }
-        return getInfoTable(uid);
+        return getInfoTable(username);
     }
-    public JSONObject addInfo(Integer uid,String name,Integer render,String phone,String email)
+    public List<Info> addInfo(String username,String name,Integer render,String phone,String email)
     {
        Info info=new Info();
        info.setName(name);
        info.setGender(render);
        info.setPhone(phone);
        info.setEmail(email);
-       info.setUid(uid);
+       info.setUsername(username);
        Integer rows=infoMapper.insert(info);
        if(rows!=1)
        {
            throw new InsertException("插入失败，发生未知错误");
        }
-       return getInfoTable(uid);
+       return getInfoTable(username);
     }
-    public JSONObject deleteInfo(Integer mid,Integer uid)
+    public List<Info> deleteInfo(Integer mid,String username)
     {
         JSONObject obj=new JSONObject();
         Integer rows=infoMapper.delete(mid);
@@ -54,13 +52,11 @@ public class InfoServiceImpl implements InfoService {
         {
             throw new UpdateException("删除信息失败");
         }
-        return getInfoTable(uid);
+        return getInfoTable(username);
     }
-    public JSONObject searchInfo(Integer mid,Integer uid)
+    public List<Info> searchInfo(Integer mid,String username)
     {
         JSONObject obj=new JSONObject();
-        List<Info>list=infoMapper.findByMid(uid,mid);
-        obj.put("InfoTable",list);
-        return obj;
+        return infoMapper.findByMid(username,mid);
     }
 }

@@ -8,14 +8,15 @@ public class Info {
     private Integer gender;
     private String phone;
     private String email;
-    private Integer uid;
+    private String username;
+
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Info info = (Info) o;
-        return mid.equals(info.mid) && name.equals(info.name) && gender.equals(info.gender) && phone.equals(info.phone) && email.equals(info.email) && uid.equals(info.uid);
+        return Objects.equals(mid, info.mid) && Objects.equals(name, info.name) && Objects.equals(gender, info.gender) && Objects.equals(phone, info.phone) && Objects.equals(email, info.email) && Objects.equals(username, info.username);
     }
 
     @Override
@@ -31,7 +32,7 @@ public class Info {
                 ", gender=" + gender +
                 ", phone='" + phone + '\'' +
                 ", email='" + email + '\'' +
-                ", uid=" + uid +
+                ", username='" + username + '\'' +
                 '}';
     }
 
@@ -75,11 +76,11 @@ public class Info {
         this.email = email;
     }
 
-    public Integer getUid() {
-        return uid;
+    public String getUsername() {
+        return username;
     }
 
-    public void setUid(Integer uid) {
-        this.uid = uid;
+    public void setUsername(String username) {
+        this.username = username;
     }
 }

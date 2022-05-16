@@ -21,7 +21,7 @@ public class MapperTest {
         info.setEmail("2333333@qq.com");
         info.setGender(0);
         info.setPhone("13308532287");
-        info.setUid(6);
+        info.setUsername("6");
         Integer rows=infoMapper.insert(info);
         System.out.println(rows);
     }
@@ -38,9 +38,9 @@ public class MapperTest {
     @Test
     public void selectTest()
     {
-        List<Info>list=infoMapper.findByUid(7);
+        List<Info>list=infoMapper.findByUserName("7");
         System.out.println(list.toString());
-        List<Info> result=infoMapper.findByMid(7,20);
+        List<Info> result=infoMapper.findByMid("7",20);
         System.out.println(result);
     }
 }

@@ -1,11 +1,14 @@
 package com.software.homework5.Service;
 
 import com.alibaba.fastjson.JSONObject;
+import com.software.homework5.Entity.Info;
+
+import java.util.List;
 
 public interface InfoService {
-    JSONObject getInfoTable(Integer uid);
-    JSONObject updateInfo(Integer mid,Integer uid,String name,Integer render,String phone,String email);
-    JSONObject addInfo(Integer uid,String name,Integer render,String phone,String email);
-    JSONObject deleteInfo(Integer mid,Integer uid);
-    JSONObject searchInfo(Integer mid,Integer uid);
+    List<Info> getInfoTable(String username);
+    List<Info> updateInfo(Integer mid,String username,String name,Integer render,String phone,String email);
+    List<Info> addInfo(String username,String name,Integer render,String phone,String email);
+    List<Info> deleteInfo(Integer mid,String username);
+    List<Info> searchInfo(Integer mid,String username);
 }
