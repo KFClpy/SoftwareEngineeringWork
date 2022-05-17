@@ -34,10 +34,10 @@
     <select id="findByUserName" resultMap="InfoEntityMap">
         select * from m_info where username=#{username}
     </select>
-    <select id="findByMid" resultMap="InfoEntityMap">
+    <select id="findByName" resultMap="InfoEntityMap">
         select *  from (
                      select * from m_info where username=#{username}
-                         ) as a1 where mid=#{mid}
+                         ) as a1 where name=#{name}
     </select>
 
 

@@ -22,7 +22,7 @@ public class ServiceTest {
     @Test
     public void searchInfoTest()
     {
-        List<Info> list=infoService.searchInfo(18,"7");
+        List<Info> list=infoService.searchInfo("刘洋","7");
         System.out.println(list);
     }
     @Test

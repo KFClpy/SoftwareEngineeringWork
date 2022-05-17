@@ -20,7 +20,7 @@ public class InfoServiceImpl implements InfoService {
         JSONObject obj=new JSONObject();
         return infoMapper.findByUserName(username);
     }
-    public List<Info> updateInfo(Integer mid,String username,String name,Integer render,String phone,String email)
+    public List<Info> updateInfo(Integer mid, String username, String name, Integer render, String phone, String email)
     {
         Integer rows=infoMapper.updateByMid(mid,name,render,phone,email);
         if(rows!=1)
@@ -54,9 +54,9 @@ public class InfoServiceImpl implements InfoService {
         }
         return getInfoTable(username);
     }
-    public List<Info> searchInfo(Integer mid,String username)
+    public List<Info> searchInfo(String name,String username)
     {
         JSONObject obj=new JSONObject();
-        return infoMapper.findByMid(username,mid);
+        return infoMapper.findByName(username,name);
     }
 }

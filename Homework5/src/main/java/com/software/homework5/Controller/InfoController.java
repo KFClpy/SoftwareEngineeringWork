@@ -40,8 +40,7 @@ public class InfoController {
         String token=tokenUtils.getToken();
         String username=tokenUtils.getUsername(token);
         JSONObject obj=new JSONObject();
-        infoService.addInfo(info.getUsername(),info.getName(),info.getGender(),info.getPhone(),info.getEmail());
-        List<Info>list=infoService.getInfoTable(username);
+        List<Info>list=infoService.addInfo(username,info.getName(),info.getGender(),info.getPhone(),info.getEmail());
         obj.put("table",list);
         obj.put("state",OK);
         redisUtils.set(token,username,30, TimeUnit.MINUTES);
@@ -53,12 +52,34 @@ public class InfoController {
         String token=tokenUtils.getToken();
         String username=tokenUtils.getUsername(token);
         JSONObject obj=new JSONObject();
-        infoService.deleteInfo(mid,username);
-        List<Info>list=infoService.getInfoTable(username);
+        List<Info>list=infoService.deleteInfo(mid,username);
         obj.put("table",list);
         obj.put("state",OK);
         redisUtils.set(token,username,30, TimeUnit.MINUTES);
         return obj;
     }
-    
+    @PostMapping("searchInfo")
+    public JSONObject searchInfo(@RequestParam String name)
+    {
+        String token= tokenUtils.getToken();
+        String username=tokenUtils.getUsername(token);
+        JSONObject obj=new JSONObject();
+        List<Info>list=infoService.searchInfo(name,username);
+        obj.put("table",list);
+        obj.put("state",OK);
+        redisUtils.set(token,username,30, TimeUnit.MINUTES);
+        return obj;
+    }
+    @PostMapping("updateInfo")
+    public JSONObject updateInfo(@RequestBody Info info)
+    {
+        String token=tokenUtils.getToken();
+        String username=tokenUtils.getUsername(token);
+        JSONObject obj=new JSONObject();
+        List<Info>list=infoService.updateInfo(info.getMid(),username,info.getName(),info.getGender(),info.getPhone(),info.getEmail());
+        obj.put("table",list);
+        obj.put("state",OK);
+        redisUtils.set(token,username,30, TimeUnit.MINUTES);
+        return obj;
+    }
 }

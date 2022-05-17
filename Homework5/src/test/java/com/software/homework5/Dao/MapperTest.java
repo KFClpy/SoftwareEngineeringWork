@@ -40,7 +40,7 @@ public class MapperTest {
     {
         List<Info>list=infoMapper.findByUserName("7");
         System.out.println(list.toString());
-        List<Info> result=infoMapper.findByMid("7",20);
+        List<Info> result=infoMapper.findByName("7","刘洋");
         System.out.println(result);
     }
 }
