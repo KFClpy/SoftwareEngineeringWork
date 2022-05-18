@@ -9,14 +9,14 @@ public class Info {
     private String phone;
     private String email;
     private String username;
-
+    private Integer award;
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Info info = (Info) o;
-        return Objects.equals(mid, info.mid) && Objects.equals(name, info.name) && Objects.equals(gender, info.gender) && Objects.equals(phone, info.phone) && Objects.equals(email, info.email) && Objects.equals(username, info.username);
+        return Objects.equals(mid, info.mid) && Objects.equals(name, info.name) && Objects.equals(gender, info.gender) && Objects.equals(phone, info.phone) && Objects.equals(email, info.email) && Objects.equals(username, info.username) && Objects.equals(award, info.award);
     }
 
     @Override
@@ -33,7 +33,16 @@ public class Info {
                 ", phone='" + phone + '\'' +
                 ", email='" + email + '\'' +
                 ", username='" + username + '\'' +
+                ", award=" + award +
                 '}';
+    }
+
+    public Integer getAward() {
+        return award;
+    }
+
+    public void setAward(Integer award) {
+        this.award = award;
     }
 
     public Integer getMid() {

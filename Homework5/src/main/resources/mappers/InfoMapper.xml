@@ -9,6 +9,7 @@
         <result column="phone" property="phone"/>
         <result column="email" property="email"/>
         <result column="username" property="username"/>
+        <result column="award" property="award"/>
     </resultMap>
     <insert id="insert" useGeneratedKeys="true" keyProperty="mid">
         INSERT INTO m_info (
