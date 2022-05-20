@@ -14,6 +14,10 @@ public class GlobalHandleException {
         {
             obj.put("state",4000);
         }
+        else if(e instanceof DeleteException)
+        {
+            obj.put("state",3000);
+        }
         else if(e instanceof InsertException)
         {
             obj.put("state",5000);

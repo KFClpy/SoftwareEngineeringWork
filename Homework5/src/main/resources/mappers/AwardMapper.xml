@@ -37,6 +37,22 @@
         WHERE
             aid=#{aid}
     </update>
+    <update id="updateAllEmptyByAid">
+        UPDATE
+            a_info
+        SET
+            emp=0
+        WHERE
+            num>0
+    </update>
+    <update id="updateAllEmptyByAid1">
+        UPDATE
+            a_info
+        SET
+            emp=1
+        WHERE
+            num=0
+    </update>
     <delete id="delete">
         delete from a_info where aid=#{aid}
     </delete>
@@ -48,6 +64,8 @@
                            select * from a_info where username=#{username}
                        ) as a1 where aname=#{aname}
     </select>
-
+    <select id="findByAid" resultMap="AwardEntityMap">
+        select * from a_info where aid=#{aid}
+    </select>
 
 </mapper>

@@ -21,4 +21,7 @@ public interface AwardMapper {
             @Param("aid") Integer aid,
             @Param("empty") Integer empty
     );
+    Integer updateAllEmptyByAid();
+    Integer updateAllEmptyByAid1();
+    Award findByAid(Integer aid);
 }

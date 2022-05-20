@@ -2,6 +2,7 @@ package com.software.homework5.Impl;
 
 import com.alibaba.fastjson.JSONObject;
 import com.software.homework5.Dao.InfoMapper;
+import com.software.homework5.EX.DeleteException;
 import com.software.homework5.EX.InsertException;
 import com.software.homework5.EX.UpdateException;
 import com.software.homework5.Entity.Info;
@@ -17,7 +18,6 @@ public class InfoServiceImpl implements InfoService {
     InfoMapper infoMapper;
     public List<Info> getInfoTable(String username)
     {
-        JSONObject obj=new JSONObject();
         return infoMapper.findByUserName(username);
     }
     public List<Info> updateInfo(Integer mid, String username, String name, Integer render, String phone, String email)
@@ -46,17 +46,15 @@ public class InfoServiceImpl implements InfoService {
     }
     public List<Info> deleteInfo(Integer mid,String username)
     {
-        JSONObject obj=new JSONObject();
         Integer rows=infoMapper.delete(mid);
         if(rows!=1)
         {
-            throw new UpdateException("删除信息失败");
+            throw new DeleteException("删除信息失败");
         }
         return getInfoTable(username);
     }
     public List<Info> searchInfo(String name,String username)
     {
-        JSONObject obj=new JSONObject();
         return infoMapper.findByName(username,name);
     }
 }

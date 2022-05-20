@@ -48,6 +48,7 @@ public class AwardMapperTest {
     @Test
     public void EmptyTest()
     {
-        awardMapper.updateEmptyByAid(54,1);
+        awardMapper.updateEmptyByAid(55,1);
+        awardMapper.updateAllEmptyByAid();
     }
 }
