@@ -16,5 +16,5 @@ public interface InfoMapper {
             @Param("phone") String phone,
             @Param("email") String email
     );
-    List<Info> findByName(String username,String name);
+    List<Info> findByName(@Param("username") String username,@Param("name") String name);
 }

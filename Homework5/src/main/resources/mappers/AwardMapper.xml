@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
+        "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper  namespace="com.software.homework5.Dao.AwardMapper">
+    <resultMap type="com.software.homework5.Entity.Award" id="AwardEntityMap">
+        <id column="aid" property="aid"/>
+        <result column="aname" property="aname"/>
+        <result column="num" property="num"/>
+        <result column="intro" property="intro"/>
+        <result column="img" property="img"/>
+        <result column="username" property="username"/>
+        <result column="emp" property="empty"/>
+    </resultMap>
+    <insert id="insert" useGeneratedKeys="true" keyProperty="aid">
+        INSERT INTO a_info (
+            aname,num,intro,img,username
+        ) VALUES (
+                     #{aname}, #{num},#{intro}, #{img},#{username}
+                 )
+    </insert>
+    <update id="updateByAid">
+        UPDATE
+            a_info
+        SET
+            aname=#{aname},
+            num=#{num},
+            intro=#{intro},
+            img=#{img}
+        WHERE
+            aid=#{aid}
+    </update>
+    <update id="updateEmptyByAid">
+        UPDATE
+            a_info
+        SET
+            emp =#{empty}
+        WHERE
+            aid=#{aid}
+    </update>
+    <delete id="delete">
+        delete from a_info where aid=#{aid}
+    </delete>
+    <select id="findByUserName" resultMap="AwardEntityMap">
+        select * from a_info where username=#{username}
+    </select>
+    <select id="findByAname" resultMap="AwardEntityMap">
+        select *  from (
+                           select * from a_info where username=#{username}
+                       ) as a1 where aname=#{aname}
+    </select>
+
+
+</mapper>
