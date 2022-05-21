@@ -26,12 +26,6 @@ public class ServiceTest {
         System.out.println(list);
     }
     @Test
-    public void deleteInfoTest()
-    {
-        List<Info> list=infoService.deleteInfo(18,"7");
-        System.out.println(list);
-    }
-    @Test
     public void addInfoTest()
     {
         List<Info> list=infoService.addInfo("lty","刘洋",0,"1384013213","22972@qq.com");

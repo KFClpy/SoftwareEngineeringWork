@@ -44,10 +44,14 @@ public class InfoServiceImpl implements InfoService {
        }
        return getInfoTable(username);
     }
-    public List<Info> deleteInfo(Integer mid,String username)
+    public List<Info> deleteInfo(Integer []mid,String username)
     {
-        Integer rows=infoMapper.delete(mid);
-        if(rows!=1)
+        int rows=0;
+        for(int val:mid)
+        {
+            rows+=infoMapper.delete(val);
+        }
+        if(rows!=mid.length)
         {
             throw new DeleteException("删除信息失败");
         }

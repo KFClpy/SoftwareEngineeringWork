@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 @RequestMapping("award")
 @RestController
@@ -35,6 +36,7 @@ public class AwardController {
         List<Award> list=awardService.getAwardTable(username);
         obj.put("table",list);
         obj.put("state",OK);
+        redisUtils.set(token,username,30, TimeUnit.MINUTES);
         return obj;
     }
     @PostMapping("addAward")
@@ -47,6 +49,7 @@ public class AwardController {
                 awardFile.getNum(),awardFile.getIntro(),awardFile.getFile());
         obj.put("table",list);
         obj.put("state",OK);
+        redisUtils.set(token,username,30, TimeUnit.MINUTES);
         return obj;
     }
     @PostMapping("updateAward")
@@ -59,10 +62,11 @@ public class AwardController {
                 awardFile.getNum(),awardFile.getIntro(),awardFile.getFile());
         obj.put("table",list);
         obj.put("state",OK);
+        redisUtils.set(token,username,30, TimeUnit.MINUTES);
         return obj;
     }
     @PostMapping("deleteAward")
-    public JSONObject deleteAward(@RequestParam Integer aid)
+    public JSONObject deleteAward(@RequestParam Integer []aid)
     {
         String token=tokenUtils.getToken();
         String username=tokenUtils.getUsername(token);
@@ -70,6 +74,7 @@ public class AwardController {
         List<Award>list=awardService.deleteAward(aid,username);
         obj.put("table",list);
         obj.put("state",OK);
+        redisUtils.set(token,username,30, TimeUnit.MINUTES);
         return obj;
     }
     @PostMapping("searchAward")
@@ -81,6 +86,7 @@ public class AwardController {
         List<Award>list=awardService.searchAward(username,aname);
         obj.put("table",list);
         obj.put("state",OK);
+        redisUtils.set(token,username,30, TimeUnit.MINUTES);
         return obj;
     }
 }

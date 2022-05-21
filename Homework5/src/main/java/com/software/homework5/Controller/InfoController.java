@@ -47,7 +47,7 @@ public class InfoController {
         return obj;
     }
     @PostMapping("deleteInfo")
-    public JSONObject deleteInfo(@RequestParam Integer mid)
+    public JSONObject deleteInfo(@RequestParam Integer []mid)
     {
         String token=tokenUtils.getToken();
         String username=tokenUtils.getUsername(token);

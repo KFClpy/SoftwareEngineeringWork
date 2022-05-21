@@ -46,21 +46,27 @@ public class AwardServiceImpl implements AwardService {
     }
 
     @Override
-    public List<Award> deleteAward(Integer aid, String username) {
-        Award award=awardMapper.findByAid(aid);
-        String filePath=path+award.getImg();
-        File preImg=new File(filePath);
-        if(preImg.isFile()&&preImg.exists())
-        {
-            boolean res=preImg.delete();
-            System.out.println("删除旧图片"+(res?"成功":"失败"));
+    public List<Award> deleteAward(Integer []aid, String username) {
+        int rows=0;
+        for(int val:aid) {
+            delOldFile(val);
+            rows += awardMapper.delete(val);
         }
-        Integer rows=awardMapper.delete(aid);
-        if(rows!=1)
+        if(rows!=aid.length)
         {
             throw new DeleteException("删除信息时错误");
         }
         return getAwardTable(username);
+    }
+
+    private void delOldFile(int val) {
+        Award award = awardMapper.findByAid(val);
+        String filePath = path + award.getImg();
+        File preImg = new File(filePath);
+        if (preImg.isFile() && preImg.exists()) {
+            boolean res = preImg.delete();
+            System.out.println("删除旧图片" + (res ? "成功" : "失败"));
+        }
     }
 
     @Override
@@ -70,14 +76,7 @@ public class AwardServiceImpl implements AwardService {
 
     @Override
     public List<Award> updateAward(Integer aid, String username, String aname, Integer num, String intro,MultipartFile file) {
-        Award award=awardMapper.findByAid(aid);
-        String filePath=path+award.getImg();
-        File preImg=new File(filePath);
-        if(preImg.isFile()&&preImg.exists())
-        {
-            boolean res=preImg.delete();
-            System.out.println("删除旧图片"+(res?"成功":"失败"));
-        }
+        delOldFile(aid);
         FileUpLoad fileUpLoad= uploadFileTool.upload(username,file.getOriginalFilename(),file);
         Integer rows=awardMapper.updateByAid(aid,aname,num,intro,fileUpLoad.getType()+ File.separator+fileUpLoad.getFilename());
         if(rows!=1)
