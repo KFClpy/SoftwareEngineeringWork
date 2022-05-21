@@ -1,8 +1,11 @@
 package com.software.homework5.Entity;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.util.Objects;
 
 public class Info {
+    @JsonProperty(value="id")
     private Integer mid;
     private String name;
     private Integer gender;

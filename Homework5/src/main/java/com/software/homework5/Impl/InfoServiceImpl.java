@@ -61,4 +61,8 @@ public class InfoServiceImpl implements InfoService {
     {
         return infoMapper.findByName(username,name);
     }
+    public Info searchSingle(Integer mid)
+    {
+        return infoMapper.findByMid(mid);
+    }
 }

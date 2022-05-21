@@ -34,6 +34,19 @@ public class InfoController {
         redisUtils.set(token,username,30, TimeUnit.MINUTES);
         return obj;
     }
+    @PostMapping("fillTable")
+    public JSONObject showSingle(@RequestParam Integer mid)
+    {
+        String token=tokenUtils.getToken();
+        String username=tokenUtils.getUsername(token);
+        JSONObject obj=new JSONObject();
+        Info info=infoService.searchSingle(mid);
+        obj.put("table",info);
+        obj.put("state",OK);
+        redisUtils.set(token,username,30, TimeUnit.MINUTES);
+        return obj;
+
+    }
     @PostMapping("addInfo")
     public JSONObject addInfo(@RequestBody Info info)
     {

@@ -40,6 +40,9 @@
                      select * from m_info where username=#{username}
                          ) as a1 where name=#{name}
     </select>
+    <select id="findByMid" resultMap="InfoEntityMap">
+        select * from m_info where mid=#{mid}
+    </select>
 
 
 </mapper>

@@ -10,4 +10,5 @@ public interface InfoService {
     List<Info> addInfo(String username,String name,Integer render,String phone,String email);
     List<Info> deleteInfo(Integer []mid,String username);
     List<Info> searchInfo(String name,String username);
+    Info searchSingle(Integer mid);
 }
