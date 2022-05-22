@@ -120,169 +120,169 @@
 
 <script>
 export default {
-  name: "People",
-  data() {
+  name: 'People',
+  data () {
     return {
 
       searchForm: {},
-      delBtlStatu: true, //批量删除
-      pageSize:10,
+      delBtlStatu: true, // 批量删除
+      pageSize: 10,
       total: 0,
       size: 10,
       current: 1,
-      pageSizes:[10,20,50,100],
-      dialogVisible: false, //弹窗显示
+      pageSizes: [10, 20, 50, 100],
+      dialogVisible: false, // 弹窗显示
       editForm: {
       },
 
       tableData: [{
       }],
 
-      newData:[{
+      newData: [{
 
       }],
 
       editFormRules: {
-        name: [{ required: true, message: "请输入用户名称", trigger: "blur" }],
-        gender: [{ required: true, message: "请选择性别", trigger: "blur" }],
-        phone: [{ required: true, message: "请输入手机号码", trigger: "blur" }],
-        email: [{ required: true, message: "请输入邮箱", trigger: "blur" }],
+        name: [{ required: true, message: '请输入用户名称', trigger: 'blur' }],
+        gender: [{ required: true, message: '请选择性别', trigger: 'blur' }],
+        phone: [{ required: true, message: '请输入手机号码', trigger: 'blur' }],
+        email: [{ required: true, message: '请输入邮箱', trigger: 'blur' }]
       },
 
       multipleSelection: [],
 
       treeCheckedKeys: [],
-      checkStrictly: true,
-    };
+      checkStrictly: true
+    }
   },
-  created() {
-    this.getUserList();
+  created () {
+    this.getUserList()
   },
   methods: {
-    toggleSelection(rows) {
+    toggleSelection (rows) {
       if (rows) {
         rows.forEach((row) => {
-          this.$refs.multipleTable.toggleRowSelection(row);
-        });
+          this.$refs.multipleTable.toggleRowSelection(row)
+        })
       } else {
-        this.$refs.multipleTable.clearSelection();
+        this.$refs.multipleTable.clearSelection()
       }
     },
-    handleSelectionChange(val) {
-      console.log("勾选");
-      console.log(val);
-      this.multipleSelection = val;
+    handleSelectionChange (val) {
+      console.log('勾选')
+      console.log(val)
+      this.multipleSelection = val
 
-      this.delBtlStatu = val.length == 0;
+      this.delBtlStatu = val.length == 0
     },
-    cutPage(){
-      var list = (this.current-1)*this.size;
-      this.newData = this.tableData.slice(list,list+this.size);
-      console.log("run1");
+    cutPage () {
+      var list = (this.current - 1) * this.size
+      this.newData = this.tableData.slice(list, list + this.size)
+      console.log('run1')
     },
-    handleSizeChange(val) {
-      console.log(`每页 ${val} 条`);
-      this.size = val;
-      this.current=1;
-      this.cutPage();
+    handleSizeChange (val) {
+      console.log(`每页 ${val} 条`)
+      this.size = val
+      this.current = 1
+      this.cutPage()
     },
-    handleCurrentChange(val) {
-      console.log(`当前页: ${val}`);
-      this.current = val;
-      this.cutPage();
-    },
-
-    resetForm(formName) {
-      //表单清空
-      this.$refs[formName].resetFields();
-      this.dialogVisible = false;
-      this.editForm = {};
-    },
-    handleClose() {
-      //关闭弹窗
-      this.resetForm("editForm");
+    handleCurrentChange (val) {
+      console.log(`当前页: ${val}`)
+      this.current = val
+      this.cutPage()
     },
 
-    getUserList() {
+    resetForm (formName) {
+      // 表单清空
+      this.$refs[formName].resetFields()
+      this.dialogVisible = false
+      this.editForm = {}
+    },
+    handleClose () {
+      // 关闭弹窗
+      this.resetForm('editForm')
+    },
+
+    getUserList () {
       this.$axios
-        .post("/info/table", {
+        .post('/info/table', {
           params: {
 
-          },
+          }
         })
         .then((res) => {
-          console.log("run");
-          this.tableData = res.data.table;
-          this.total=res.data.table.length;
-          this.cutPage();
-        });
+          console.log('run')
+          this.tableData = res.data.table
+          this.total = res.data.table.length
+          this.cutPage()
+        })
     },
-    searchUser() {
+    searchUser () {
       this.$axios
-        .post("/info/searchInfo?name="+this.searchForm.name)
+        .post('/info/searchInfo?name=' + this.searchForm.name)
         .then((res) => {
-          console.log("run");
-          this.tableData = res.data.table;
-          this.total=res.data.table.length;
-          this.cutPage();
-        });
+          console.log('run')
+          this.tableData = res.data.table
+          this.total = res.data.table.length
+          this.cutPage()
+        })
     },
-    submitForm(formName) {
+    submitForm (formName) {
       this.$refs[formName].validate((valid) => {
         if (valid) {
           this.$axios
             .post(
-              "/info/" + (this.editForm.id ? "updateInfo" : "addInfo"),
+              '/info/' + (this.editForm.id ? 'updateInfo' : 'addInfo'),
               this.editForm
             )
             .then((res) => {
-              this.getUserList();
+              this.getUserList()
               this.$message({
                 showClose: true,
-                message: "恭喜你，操作成功",
-                type: "success",
-              });
+                message: '恭喜你，操作成功',
+                type: 'success'
+              })
 
-              this.dialogVisible = false;
-            });
+              this.dialogVisible = false
+            })
         } else {
-          console.log("error submit!!");
-          return false;
+          console.log('error submit!!')
+          return false
         }
-      });
+      })
     },
-    editHandle(id) {
-      //编辑
-      this.$axios.post("/info/fillTable?mid="+id).then((res) => {
+    editHandle (id) {
+      // 编辑
+      this.$axios.post('/info/fillTable?mid=' + id).then((res) => {
         console.log(res.data.table)
-        this.editForm = res.data.table;
+        this.editForm = res.data.table
 
-        this.dialogVisible = true;
-      });
+        this.dialogVisible = true
+      })
     },
-    delHandle(id) {
-      var ids = [];
+    delHandle (id) {
+      var ids = []
 
       if (id) {
-        ids.push(id);
+        ids.push(id)
       } else {
         this.multipleSelection.forEach((row) => {
-          ids.push(row.id);
-        });
+          ids.push(row.id)
+        })
       }
 
-      console.log(ids);
-      this.$axios.post("/info/deleteInfo?mid="+ids).then((res) => {
-        this.getUserList();
+      console.log(ids)
+      this.$axios.post('/info/deleteInfo?mid=' + ids).then((res) => {
+        this.getUserList()
         this.$message({
           showClose: true,
-          message: "恭喜你，操作成功",
-          type: "success",
-        });
-      });
-    },
-  },
-};
+          message: '恭喜你，操作成功',
+          type: 'success'
+        })
+      })
+    }
+  }
+}
 </script>
 
 <style scoped>

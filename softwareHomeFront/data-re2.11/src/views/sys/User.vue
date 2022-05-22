@@ -48,53 +48,53 @@
 </template>
 
 <script>
-import Element, { Message } from "element-ui";
+import Element, { Message } from 'element-ui'
 export default {
-  name: "Login",
-  data() {
+  name: 'Login',
+  data () {
     var validatePass = (rule, value, callback) => {
-      if (value === "") {
-        callback(new Error("请再次输入密码"));
+      if (value === '') {
+        callback(new Error('请再次输入密码'))
       } else if (value !== this.passForm.password) {
-        callback(new Error("两次输入密码不一致!"));
+        callback(new Error('两次输入密码不一致!'))
       } else {
-        callback();
+        callback()
       }
-    };
+    }
     var validatePass1 = (rule, value, callback) => {
-      if (value === "") {
-        callback(new Error("请输入新密码"));
+      if (value === '') {
+        callback(new Error('请输入新密码'))
       } else if (value === this.passForm.currentPass) {
-        callback(new Error("请勿与原密码一致!"));
+        callback(new Error('请勿与原密码一致!'))
       } else {
-        callback();
+        callback()
       }
-    };
+    }
     return {
       // userInfo: {},
       passForm: {
-        password: "",
-        checkPass: "",
-        currentPass: "",
+        password: '',
+        checkPass: '',
+        currentPass: ''
       },
       rules: {
         password: [
-          { required: true, validator: validatePass1, trigger: "blur" },
+          { required: true, validator: validatePass1, trigger: 'blur' },
           {
             min: 6,
             max: 12,
-            message: "长度在 6 到 12 个字符",
-            trigger: "blur",
-          },
+            message: '长度在 6 到 12 个字符',
+            trigger: 'blur'
+          }
         ],
         checkPass: [
-          { required: true, validator: validatePass, trigger: "blur" },
+          { required: true, validator: validatePass, trigger: 'blur' }
         ],
         currentPass: [
-          { required: true, message: "请输入当前密码", trigger: "blur" },
-        ],
-      },
-    };
+          { required: true, message: '请输入当前密码', trigger: 'blur' }
+        ]
+      }
+    }
   },
   // created() {
   //   this.getUserInfo();
@@ -105,18 +105,18 @@ export default {
     //     this.userInfo = res.data.data;
     //   });
     // },
-    submitForm(formName) {
+    submitForm (formName) {
       this.$refs[formName].validate((valid) => {
         if (valid) {
-          const _this = this;
-          //提交表单
+          const _this = this
+          // 提交表单
           this.$axios({
-            url: "/users/password/change",
-            method: "post",
+            url: '/users/password/change',
+            method: 'post',
             params: {
               oldPassword: this.passForm.currentPass,
-              newPassword: this.passForm.password,
-            },
+              newPassword: this.passForm.password
+            }
           }).then((res) => {
             // _this.$alert(res.data.msg, "提示", {
             //   confirmButtonText: "确定",
@@ -125,24 +125,24 @@ export default {
             //   },
             // });
             if (res.data.state === 2000) {
-              localStorage.clear();
-              sessionStorage.clear();
-              this.$store.commit("resetState");
-              this.$router.push("/login");
+              localStorage.clear()
+              sessionStorage.clear()
+              this.$store.commit('resetState')
+              this.$router.push('/login')
             } else if (res.data.state === 7000) {
-              Element.Message.error("数据更新错误,请稍后重试");
+              Element.Message.error('数据更新错误,请稍后重试')
             } else {
-              Element.Message.error("出现了一些意料之外的错误,请稍后再试");
+              Element.Message.error('出现了一些意料之外的错误,请稍后再试')
             }
-          });
+          })
         } else {
-          console.log("error submit!!");
-          return false;
+          console.log('error submit!!')
+          return false
         }
-      });
-    },
-  },
-};
+      })
+    }
+  }
+}
 </script>
 
 <style scoped>

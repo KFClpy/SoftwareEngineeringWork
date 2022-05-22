@@ -41,126 +41,124 @@
 </template>
 
 <script>
-import Element, { Message } from "element-ui";
+import Element, { Message } from 'element-ui'
 export default {
-  data() {
+  data () {
     var validatePass = (rule, value, callback) => {
       if (value !== this.registerData.password) {
-        callback(new Error("两次输入密码不一致!"));
+        callback(new Error('两次输入密码不一致!'))
       } else {
-        callback();
+        callback()
       }
-    };
+    }
     return {
       registerData: {
-        username: "",
-        password: "",
-        password2: "",
+        username: '',
+        password: '',
+        password2: ''
       },
       rules: {
         username: [
           {
             required: true,
-            message: "用户名不能为空！",
-            trigger: "blur",
+            message: '用户名不能为空！',
+            trigger: 'blur'
           },
           {
             min: 3,
             max: 12,
-            message: "长度应在3~12之间",
-            trigger: "blur",
+            message: '长度应在3~12之间',
+            trigger: 'blur'
           },
-          { validator: this.checkData, trigger: "blur" },
+          { validator: this.checkData, trigger: 'blur' }
         ],
         password: [
           {
             required: true,
-            message: "密码不能为空！",
-            trigger: "blur",
+            message: '密码不能为空！',
+            trigger: 'blur'
           },
           {
             min: 6,
             max: 18,
-            message: "长度应在6~18之间",
-            trigger: "blur",
+            message: '长度应在6~18之间',
+            trigger: 'blur'
           },
-          { validator: this.checkData2, trigger: "blur" },
+          { validator: this.checkData2, trigger: 'blur' }
         ],
         password2: [
           {
             required: true,
-            message: "确认密码不能为空！",
-            trigger: "blur",
+            message: '确认密码不能为空！',
+            trigger: 'blur'
           },
           {
             min: 6,
             max: 18,
-            message: "长度应在6~18之间",
-            trigger: "blur",
+            message: '长度应在6~18之间',
+            trigger: 'blur'
           },
-          { validator: validatePass, trigger: "blur" },
-          { validator: this.checkData2, trigger: "blur" },
-        ],
-      },
-    };
+          { validator: validatePass, trigger: 'blur' },
+          { validator: this.checkData2, trigger: 'blur' }
+        ]
+      }
+    }
   },
   methods: {
-    checkData(rule, value, callback) {
+    checkData (rule, value, callback) {
       if (value) {
         if (/[\u4E00-\u9FA5]/g.test(value)) {
-          callback(new Error("用户名请不要含有中文!"));
+          callback(new Error('用户名请不要含有中文!'))
         } else {
-          callback();
+          callback()
         }
       }
-      callback();
+      callback()
     },
-    checkData2(rule, value, callback) {
+    checkData2 (rule, value, callback) {
       if (value) {
         if (/[\u4E00-\u9FA5]/g.test(value)) {
-          callback(new Error("密码请不要含有中文!"));
+          callback(new Error('密码请不要含有中文!'))
         } else {
-          callback();
+          callback()
         }
       }
-      callback();
+      callback()
     },
-    submitForm(formName) {
+    submitForm (formName) {
       this.$refs[formName].validate((valid) => {
         if (valid) {
           this.$axios({
-            url: "/users/reg",
-            method: "post",
+            url: '/users/reg',
+            method: 'post',
             data: {
               username: this.registerData.username,
-              password: this.registerData.password,
-            },
+              password: this.registerData.password
+            }
           }).then((res) => {
             if (res.data.state === 2000) {
               this.$message({
-                type: "success",
-                message: "用户注册成功",
-              });
-              this.$router.push("/login");
+                type: 'success',
+                message: '用户注册成功'
+              })
+              this.$router.push('/login')
             } else if (res.data.state === 4000) {
-              Element.Message.error("注册失败,用户名已存在");
+              Element.Message.error('注册失败,用户名已存在')
             } else if (res.data.state === 5000) {
-              Element.Message.error("注册失败,数据插入错误");
+              Element.Message.error('注册失败,数据插入错误')
             } else {
-              Element.Message.error("出现了一些意料之外的错误,请稍后再试");
+              Element.Message.error('出现了一些意料之外的错误,请稍后再试')
             }
-          });
+          })
         } else {
-          console.log("error submit!!");
-          return false;
+          console.log('error submit!!')
+          return false
         }
-      });
-    },
-  },
-};
+      })
+    }
+  }
+}
 </script>
-
-
 
 <style  scoped>
 /* .box {

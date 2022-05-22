@@ -3,7 +3,7 @@
     <el-col :span="8"
       ><el-card shadow="hover" class="card"
         ><div class="grid-content bg-purple">
-         
+
            <i class="el-icon-s-promotion"></i>
             <h3 style="color:#409EFF">愿景</h3>
             <p style="color:#5151A2">成为当前最优秀的时序数据修复平台</p>
@@ -14,7 +14,7 @@
     <el-col :span="8"
       ><el-card shadow="hover" class="card"
         ><div class="grid-content bg-purple-light">
-    
+
             <i class="el-icon-s-check"></i>
             <h3 style="color:#409EFF">使命</h3>
             <p style="color:#5151A2">让人们的数据质量得到保障</p>
@@ -25,7 +25,7 @@
     <el-col :span="8"
       ><el-card shadow="hover" class="card"
         ><div class="grid-content bg-purple">
-   
+
             <i class="el-icon-s-opportunity"></i>
             <h3 style="color:#409EFF">核心价值</h3>
             <p style="color:#5151A2">
@@ -40,14 +40,14 @@
 
 <script>
 export default {
-  name: "Ours",
-  data() {
+  name: 'Ours',
+  data () {
     return {
       value: null,
-      colors: ["#99A9BF", "#F7BA2A", "#FF9900"],
-    };
-  },
-};
+      colors: ['#99A9BF', '#F7BA2A', '#FF9900']
+    }
+  }
+}
 </script>
 
 <style scoped>
