@@ -10,7 +10,7 @@
     active-text-color="#ffd04b"
   >
 
-    <h3><i :class="'el-icon-s-unfold'"></i></h3>
+    <h3 style="font-size: 30px"><i :class="'el-icon-s-unfold'"></i></h3>
     <el-menu-item
       :index="item.path"
       v-for="item in noChildren"
