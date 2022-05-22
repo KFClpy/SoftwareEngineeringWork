@@ -123,7 +123,7 @@ export default {
   }
 }
 .el-menu-vertical-demo:not(.el-menu--collapse) {
-  width: 170px;
+  width: 200px;
   min-height: 400px;
   height:100%;
 }
