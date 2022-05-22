@@ -9,8 +9,8 @@
     text-color="#fff"
     active-text-color="#ffd04b"
   >
-    <h3 v-show="!isCollapse">数据修复系统</h3>
-    <h3 v-show="isCollapse">功能</h3>
+
+    <h3><i :class="'el-icon-s-unfold'"></i></h3>
     <el-menu-item
       :index="item.path"
       v-for="item in noChildren"
@@ -123,7 +123,7 @@ export default {
   }
 }
 .el-menu-vertical-demo:not(.el-menu--collapse) {
-  width: 200px;
+  width: 170px;
   min-height: 400px;
   height:100%;
 }
