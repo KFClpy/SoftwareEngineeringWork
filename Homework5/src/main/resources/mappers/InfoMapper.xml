@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
         "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
-<mapper  namespace="com.software.homework5.Dao.InfoMapper">
-    <resultMap type="com.software.homework5.Entity.Info" id="InfoEntityMap">
+<mapper  namespace="com.software.homework5.dao.InfoMapper">
+    <resultMap type="com.software.homework5.entity.Info" id="InfoEntityMap">
         <id column="mid" property="mid"/>
         <result column="name" property="name"/>
         <result column="gender" property="gender"/>

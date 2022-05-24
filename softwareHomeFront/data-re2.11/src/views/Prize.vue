@@ -14,7 +14,7 @@
       <el-form-item>
         <el-popconfirm title="确定批量删除吗？" @confirm="delHandle(null)">
           <el-button type="danger" slot="reference" :disabled="delBtlStatu"
-            >批量删除</el-button
+          >批量删除</el-button
           >
         </el-popconfirm>
       </el-form-item>
@@ -52,7 +52,7 @@
       <el-table-column prop="icon" label="操作">
         <template slot-scope="scope">
           <el-button type="text" @click="editHandle(scope.row.aid)"
-            >编辑</el-button
+          >编辑</el-button
           >
           <el-divider direction="vertical"></el-divider>
           <template>
@@ -128,7 +128,7 @@
       <div slot="footer" class="dialog-footer">
         <el-button @click="resetForm('editForm')">取 消</el-button>
         <el-button type="primary" @click="submitForm('editForm')"
-          >确 定</el-button
+        >确 定</el-button
         >
       </div>
     </el-dialog>
@@ -189,11 +189,11 @@ export default {
     beforeRemove(file, fileList) {
       if(this.ImgValid){
         let temp=this.$confirm(`确定移除 ${file.aname}？`)
-      if(temp){
-      this.editForm.files.pop()
-      this.ImgValid=false;
-      }
-       return temp
+        if(temp){
+          this.editForm.files.pop()
+          this.ImgValid=false;
+        }
+        return temp
       }
       else
       {
@@ -202,19 +202,19 @@ export default {
       }
     },
     beforeProductUpload(file) {
-       const isJPG = file.type === 'image/jpeg';
-        const isLt2M = file.size / 1024 / 1024 < 2;
-        this.ImgValid=isJPG&&isLt2M;
+      const isJPG = file.type === 'image/jpeg';
+      const isLt2M = file.size / 1024 / 1024 < 2;
+      this.ImgValid=isJPG&&isLt2M;
       if (!isJPG) {
-          this.$message.error('上传头像图片只能是 JPG 格式!');
-          this.editForm.files.pop()
-          return false;
-        }
-        if (!isLt2M) {
-          this.$message.error('上传头像图片大小不能超过 2MB!');
-          this.editForm.files.pop()
-          return false;
-        }
+        this.$message.error('上传头像图片只能是 JPG 格式!');
+        this.editForm.files.pop()
+        return false;
+      }
+      if (!isLt2M) {
+        this.$message.error('上传头像图片大小不能超过 2MB!');
+        this.editForm.files.pop()
+        return false;
+      }
       var _this = this;
       return new Promise(function (resolve, reject) {
         var reader = new FileReader();
@@ -264,6 +264,9 @@ export default {
       this.fileList = [];
       this.dialogVisible = false;
       this.editForm = {
+        aname: "",
+        num: "",
+        intro: "",
         files: []
       };
     },
@@ -332,10 +335,10 @@ export default {
         } else {
           console.log("error submit!!");
           _this.$message({
-                showClose: true,
-                message:"请上传图片",
-                type: "error",
-              });
+            showClose: true,
+            message:"请上传图片",
+            type: "error",
+          });
         }
       });
     },
