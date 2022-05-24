@@ -89,4 +89,17 @@ public class AwardController {
         redisUtils.set(token,username,30, TimeUnit.MINUTES);
         return obj;
     }
+    @PostMapping("fillTable")
+    public JSONObject fillTable(@RequestParam Integer aid) {
+        String token = tokenUtils.getToken();
+        String username = tokenUtils.getUsername(token);
+        JSONObject obj = new JSONObject();
+        Award award = awardService.getAward(aid);
+        obj.put("table", award);
+        obj.put("state", OK);
+        redisUtils.set(token, username, 30, TimeUnit.MINUTES);
+        return obj;
+    }
+
+
 }

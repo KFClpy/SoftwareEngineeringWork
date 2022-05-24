@@ -12,7 +12,7 @@
 //   return Result;
 // });
 //
-// Mock.mock(RegExp("/api/sys/user/updata*"), "post", () => {
+// Mock.mock(RegExp("/api/info/addInfo*"), "post", () => {
 //   return Result;
 // });
 //
@@ -20,7 +20,11 @@
 // //   return Result;
 // // });
 //
-// Mock.mock(RegExp("/api/info/updataInfo"), "post", () => {
+// Mock.mock(RegExp("/api/info/updataInfo*"), "post", () => {
+//   return Result;
+// });
+//
+// Mock.mock(RegExp("/api/info/fillTable?mid=*"), "post", () => {
 //   return Result;
 // });
 //
@@ -29,165 +33,25 @@
 //     table: [
 //       {
 //         id: 1,
-//
 //         name: "孟庆鑫",
-//         gender: 1,
-//         phone: "15754295425",
-//         email: "jg79805425@sina.cn",
+//         prizenum: 1,
+//         details: "好好好",
+//         imageurl: "https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg",
 //       },
 //       {
 //         id: 520,
-//
 //         name: "乃琳",
-//         gender: 2,
-//         phone: "15754295425",
-//         email: "jg79805425@sina.cn",
+//         prizenum: 1,
+//         details: "好好好",
+//         imageurl: "https://img2.baidu.com/it/u=355089164,524391608&fm=253&fmt=auto&app=138&f=JPEG?w=708&h=500",
 //       },
 //       {
 //         id: 521,
-//
 //         name: "嘉然",
-//         gender: 2,
-//         phone: "15754295425",
-//         email: "jg79805425@sina.cn",
+//         prizenum: 1,
+//         details: "好好好",
+//         imageurl: "https://img1.baidu.com/it/u=152576508,2736311163&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=329",
 //       },
-//       {
-//         id: 521,
-//
-//         name: "嘉然",
-//         gender: 2,
-//         phone: "15754295425",
-//         email: "jg79805425@sina.cn",
-//       },
-//       {
-//         id: 521,
-//
-//         name: "嘉然",
-//         gender: 2,
-//         phone: "15754295425",
-//         email: "jg79805425@sina.cn",
-//       },
-//       {
-//         id: 521,
-//
-//         name: "嘉然",
-//         gender: 2,
-//         phone: "15754295425",
-//         email: "jg79805425@sina.cn",
-//       },
-//       {
-//         id: 521,
-//
-//         name: "嘉然",
-//         gender: 2,
-//         phone: "15754295425",
-//         email: "jg79805425@sina.cn",
-//       },
-//       {
-//         id: 521,
-//
-//         name: "嘉然",
-//         gender: 2,
-//         phone: "15754295425",
-//         email: "jg79805425@sina.cn",
-//       },
-//       {
-//         id: 521,
-//
-//         name: "嘉然",
-//         gender: 2,
-//         phone: "15754295425",
-//         email: "jg79805425@sina.cn",
-//       },
-//       {
-//         id: 521,
-//
-//         name: "嘉然",
-//         gender: 2,
-//         phone: "15754295425",
-//         email: "jg79805425@sina.cn",
-//       },
-//       {
-//         id: 521,
-//
-//         name: "嘉然",
-//         gender: 2,
-//         phone: "15754295425",
-//         email: "jg79805425@sina.cn",
-//       },
-//       {
-//         id: 521,
-//
-//         name: "嘉然",
-//         gender: 2,
-//         phone: "15754295425",
-//         email: "jg79805425@sina.cn",
-//       },
-//       {
-//         id: 521,
-//
-//         name: "嘉然",
-//         gender: 2,
-//         phone: "15754295425",
-//         email: "jg79805425@sina.cn",
-//       },
-//       {
-//         id: 521,
-//
-//         name: "嘉然",
-//         gender: 2,
-//         phone: "15754295425",
-//         email: "jg79805425@sina.cn",
-//       },
-//       {
-//         id: 521,
-//
-//         name: "嘉然",
-//         gender: 2,
-//         phone: "15754295425",
-//         email: "jg79805425@sina.cn",
-//       },
-//       {
-//         id: 521,
-//
-//         name: "嘉然",
-//         gender: 2,
-//         phone: "15754295425",
-//         email: "jg79805425@sina.cn",
-//       },
-//       {
-//         id: 521,
-//
-//         name: "嘉然",
-//         gender: 2,
-//         phone: "15754295425",
-//         email: "jg79805425@sina.cn",
-//       },
-//       {
-//         id: 521,
-//
-//         name: "嘉然",
-//         gender: 2,
-//         phone: "15754295425",
-//         email: "jg79805425@sina.cn",
-//       },
-//       {
-//         id: 521,
-//
-//         name: "嘉然",
-//         gender: 2,
-//         phone: "15754295425",
-//         email: "jg79805425@sina.cn",
-//       },
-//       {
-//         id: 521,
-//
-//         name: "嘉然",
-//         gender: 2,
-//         phone: "15754295425",
-//         email: "jg79805425@sina.cn",
-//       },
-//
 //     ],
 //   };
 //   return Result;

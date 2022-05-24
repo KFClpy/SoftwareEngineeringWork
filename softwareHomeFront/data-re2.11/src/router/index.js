@@ -2,11 +2,12 @@ import Vue from "vue";
 import VueRouter from "vue-router";
 import Home from "../views/Home.vue";
 import Index from "../views/Index.vue";
-import Setting from "../views/sys/Setting.vue";
-import History from "../views/sys/History.vue";
-import User from "../views/sys/User.vue";
-import Help from "../views/sys/Help.vue";
-import Ours from "../views/sys/Ours.vue";
+import Setting from "../views/Setting.vue";
+import History from "../views/History.vue";
+import User from "../views/User.vue";
+import Help from "../views/Help.vue";
+import Ours from "../views/Ours.vue";
+import Prize from "../views/Prize.vue";
 import Register from "../views/Register.vue";
 const originPush = VueRouter.prototype.push
 VueRouter.prototype.push=function push (location){
@@ -19,7 +20,7 @@ const routes = [
     path: "/",
     name: "Home",
     meta: {
-      requireAuth: true, 
+      requireAuth: true,
     },
     component: Home,
     children: [
@@ -27,7 +28,7 @@ const routes = [
         path: "/index",
         name: "Index",
         meta: {
-          requireAuth: true, 
+          requireAuth: true,
         },
         component: Index,
       },
@@ -35,47 +36,55 @@ const routes = [
         path: "/userCenter",
         name: "UserCenter",
         meta: {
-          requireAuth: true, 
+          requireAuth: true,
         },
         component: () => import("../views/UserCenter.vue"),
       },
       {
-        path: "sys/setting",
+        path: "Prize",
+        name: "SysPrize",
+        meta: {
+          requireAuth: true,
+        },
+        component: Prize
+      },
+      {
+        path: "setting",
         name: "SysSetting",
         meta: {
-          requireAuth: true, 
+          requireAuth: true,
         },
         component: Setting,
       },
       {
-        path: "sys/history",
+        path: "history",
         name: "SysHistory",
         meta: {
-          requireAuth: true, 
+          requireAuth: true,
         },
         component: History,
       },
       {
-        path: "sys/user",
+        path: "user",
         name: "SysUser",
         meta: {
-          requireAuth: true, 
+          requireAuth: true,
         },
         component: User,
       },
       {
-        path: "sys/help",
+        path: "help",
         name: "SysHelp",
         meta: {
-          requireAuth: true, 
+          requireAuth: true,
         },
         component: Help,
       },
       {
-        path: "sys/ours",
+        path: "ours",
         name: "SysOurs",
         meta: {
-          requireAuth: true, 
+          requireAuth: true,
         },
         component: Ours,
       },

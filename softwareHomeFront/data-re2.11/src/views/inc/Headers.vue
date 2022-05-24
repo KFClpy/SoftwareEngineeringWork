@@ -29,11 +29,11 @@
 <script>
 export default {
   methods: {
-    headleMenu () {
-      this.$store.commit('collapseMenu')
-    }
-  }
-}
+    headleMenu() {
+      this.$store.commit("collapseMenu");
+    },
+  },
+};
 </script>
 
 <style lang="scss" scoped>

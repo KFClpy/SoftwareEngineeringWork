@@ -194,133 +194,133 @@
 </template>
 
 <script>
-import Element, { Message } from 'element-ui'
-import 'babel-polyfill' // es6 shim
-import myUpload from 'vue-image-crop-upload'
+import Element, { Message } from "element-ui";
+import "babel-polyfill"; // es6 shim
+import myUpload from "vue-image-crop-upload";
 export default {
-  name: 'UserCenter',
-  data () {
+  name: "UserCenter",
+  data() {
     return {
       headers: {
-        token: localStorage.getItem('token')
+        token: localStorage.getItem("token"),
       },
       show: false,
       size: 2.1,
       userInfo: {
-        avatar: '',
-        name: '',
-        tel: '',
-        sex: '',
-        other: '',
-        email: ''
+        avatar: "",
+        name: "",
+        tel: "",
+        sex: "",
+        other: "",
+        email: "",
       },
       userForm: {
-        name: '',
-        tel: '',
-        sex: '',
-        other: '',
-        email: ''
+        name: "",
+        tel: "",
+        sex: "",
+        other: "",
+        email: "",
       },
       dialogFormVisible: false,
       rules: {
-        // 表单验证
-        name: [{ required: true, message: '请输入昵称', trigger: 'blur' }],
-        tel: [{ required: true, message: '请输入手机号码', trigger: 'blur' }],
-        sex: [{ required: true, message: '请选择用户性别', trigger: 'blur' }],
-        other: [{ required: true, message: '请选择用户备注', trigger: 'blur' }],
-        email: [{ required: true, message: '请输入电子邮箱', trigger: 'blur' }]
+        //表单验证
+        name: [{ required: true, message: "请输入昵称", trigger: "blur" }],
+        tel: [{ required: true, message: "请输入手机号码", trigger: "blur" }],
+        sex: [{ required: true, message: "请选择用户性别", trigger: "blur" }],
+        other: [{ required: true, message: "请选择用户备注", trigger: "blur" }],
+        email: [{ required: true, message: "请输入电子邮箱", trigger: "blur" }],
       },
       options: [
-        // 下拉框选项
+        //下拉框选项
         {
-          value: '1',
-          label: '男'
+          value: "1",
+          label: "男",
         },
         {
-          value: '2',
-          label: '女'
-        }
+          value: "2",
+          label: "女",
+        },
       ],
       options2: [
-        // 下拉框选项
+        //下拉框选项
         {
-          value: '1',
-          label: '学生'
+          value: "1",
+          label: "学生",
         },
         {
-          value: '2',
-          label: '教师'
+          value: "2",
+          label: "教师",
         },
         {
-          value: '3',
-          label: '其他'
-        }
-      ]
-    }
+          value: "3",
+          label: "其他",
+        },
+      ],
+    };
   },
   components: {
-    'my-upload': myUpload
+    "my-upload": myUpload,
   },
-  created () {
-    this.getUserInfo()
+  created() {
+    this.getUserInfo();
   },
   methods: {
-    toggleShow () {
-      this.show = !this.show
+    toggleShow() {
+      this.show = !this.show;
     },
-    cropSuccess (imgDataUrl, field) {
-      this.userInfo.avatar = imgDataUrl
-      console.log('-------- crop success --------', imgDataUrl, field)
+    cropSuccess(imgDataUrl, field) {
+      this.userInfo.avatar = imgDataUrl;
+      console.log("-------- crop success --------", imgDataUrl, field);
     },
-    // 上传成功回调
-    cropUploadSuccess (jsonData, field) {
-      console.log('-------- upload success --------')
-      this.imgDataUrl = jsonData.files.Avatar1
-      console.log(jsonData)
-      console.log('field: ' + field)
+    //上传成功回调
+    cropUploadSuccess(jsonData, field) {
+      console.log("-------- upload success --------");
+      this.imgDataUrl = jsonData.files.Avatar1;
+      console.log(jsonData);
+      console.log("field: " + field);
     },
-    // 上传失败回调
-    cropUploadFail (status, field) {
-      console.log('-------- upload fail --------')
-      console.log('上传失败状态' + status)
-      console.log('field: ' + field)
+    //上传失败回调
+    cropUploadFail(status, field) {
+      console.log("-------- upload fail --------");
+      console.log("上传失败状态" + status);
+      console.log("field: " + field);
     },
-    getUserInfo () {
-      this.$axios.get('/users/userInfo').then((res) => {
-        this.userInfo = res.data
-        console.log(res, this.userInfo)
-      })
+    getUserInfo() {
+      this.$axios.get("/users/userInfo").then((res) => {
+        this.userInfo = res.data;
+        console.log(res, this.userInfo);
+      });
     },
-    modify () {
-      this.dialogFormVisible = true
+    modify() {
+      this.dialogFormVisible = true;
     },
-    resetForm (userForm) {
-      this.$refs[userForm].resetFields()
+    resetForm(userForm) {
+      this.$refs[userForm].resetFields();
     },
-    confirmAddUser (form) {
+    confirmAddUser(form) {
       this.$refs.userForm.validate((valid) => {
         if (valid) {
-          // 表单验证通过
-          console.log(form) // form就是form表单对象
-          this.loading = true
-          this.$axios.post('/users/information', this.userForm).then((res) => {
+          //表单验证通过
+          console.log(form); //form就是form表单对象
+          this.loading = true;
+          this.$axios.post("/users/information", this.userForm).then((res) => {
             if (res.data.state === 2000) {
-              this.loading = false
-              this.dialogFormVisible = false
-              this.getUserInfo() // 重新调用渲染列表的方法
-              this.$message({ message: '添加成功', type: 'success' })
+              this.loading = false;
+              this.dialogFormVisible = false;
+              this.getUserInfo(); //重新调用渲染列表的方法
+              this.$message({ message: "添加成功", type: "success" });
             } else {
-              Element.Message.error('出现了一些意料之外的错误,请稍后再试')
+              Element.Message.error("出现了一些意料之外的错误,请稍后再试");
             }
-          })
+          });
         } else {
-          console.log('error submit!!')
-          return false
+          console.log("error submit!!");
+          return false;
         }
-      })
-    }
-  }
-}
+      });
+    },
+  },
+};
 </script>
 
 <style scoped>

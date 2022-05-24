@@ -43,56 +43,56 @@
 </template>
 
 <script>
-import { mapState } from 'vuex'
-import SideMenu from './inc/SideMenu.vue'
-import CommonTag from '../components/CommonTag.vue'
+import { mapState } from "vuex";
+import SideMenu from "./inc/SideMenu.vue";
+import CommonTag from "../components/CommonTag.vue";
 export default {
-  name: 'Home',
+  name: "Home",
   components: {
-    SideMenu, CommonTag
+    SideMenu,CommonTag
   },
-  data () {
+  data() {
     return {
       userInfo: {
-        avatar: '',
-        name: '',
-        tel: '',
-        sex: '',
-        other: '',
-        email: ''
-      }
-    }
+        avatar: "",
+        name: "",
+        tel: "",
+        sex: "",
+        other: "",
+        email: "",
+      },
+    };
   },
-  created () {
-    this.getUserInfo()
+  created() {
+    this.getUserInfo();
   },
   methods: {
-    headleMenu () {
-      this.$store.commit('collapseMenu')
+    headleMenu() {
+      this.$store.commit("collapseMenu");
     },
-    getUserInfo () {
-      this.$axios.get('/users/userInfo').then((res) => {
-        this.userInfo = res.data
-        console.log(res, this.userInfo)
-      })
+    getUserInfo() {
+      this.$axios.get("/users/userInfo").then((res) => {
+        this.userInfo = res.data;
+        console.log(res,this.userInfo)
+      });
     },
-    logout () {
-      this.$axios.post('/users/logout').then((res) => {
-        localStorage.clear()
-        sessionStorage.clear()
+    logout() {
+      this.$axios.post("/users/logout").then((res) => {
+        localStorage.clear();
+        sessionStorage.clear();
 
-        this.$store.commit('resetState')
+        this.$store.commit("resetState");
 
-        this.$router.push('/login')
-      })
-    }
+        this.$router.push("/login");
+      });
+    },
   },
   computed: {
     ...mapState({
-      current: (state) => state.tab.currentMenu
-    })
-  }
-}
+      current: (state) => state.tab.currentMenu,
+    }),
+  },
+};
 </script>
 
 <style scoped>
@@ -149,9 +149,9 @@ header {
 a {
   text-decoration: none;
 }
-.el-breadcrumb  /deep/  .el-breadcrumb__inner
+.el-breadcrumb  /deep/  .el-breadcrumb__inner 
       {
-        color:white !important;
+        color:white !important;	
     }
 
 </style>

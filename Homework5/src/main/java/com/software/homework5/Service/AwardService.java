@@ -11,4 +11,5 @@ public interface AwardService {
     List<Award>searchAward(String username,String aname);
     List<Award>deleteAward(Integer []aid,String username);
     List<Award>addAward(String username, String aname, Integer num, String intro, MultipartFile file);
+    Award getAward(Integer aid);
 }

@@ -54,92 +54,92 @@
   </el-row>
 </template>
 <script>
-import Element, { Message } from 'element-ui'
+import Element, { Message } from "element-ui";
 export default {
-  name: 'Login',
-  data () {
+  name: "Login",
+  data() {
     return {
       loginForm: {
-        username: '',
-        password: ''
+        username: "",
+        password: "",
         // code: "",
         // token: "",
       },
       rules: {
         username: [
-          { required: true, message: '请输入用户名', trigger: 'blur' },
-          { validator: this.checkData, trigger: 'blur' }
+          { required: true, message: "请输入用户名", trigger: "blur" },
+          { validator: this.checkData, trigger: "blur" },
         ],
         password: [
-          { required: true, message: '请输入密码', trigger: 'blur' },
-          { validator: this.checkData2, trigger: 'blur' }
-        ]
+          { required: true, message: "请输入密码", trigger: "blur" },
+          { validator: this.checkData2, trigger: "blur" },
+        ],
         // code: [
         //   { required: true, message: "请输入验证码", trigger: "blur" },
         //   { min: 5, max: 5, message: "长度为5个字符", trigger: "blur" },
         // ],
       },
-      captchaImg: null
-    }
+      captchaImg: null,
+    };
   },
   methods: {
-    checkData (rule, value, callback) {
+    checkData(rule, value, callback) {
       if (value) {
         if (/[\u4E00-\u9FA5]/g.test(value)) {
-          callback(new Error('用户名请不要含有中文!'))
+          callback(new Error("用户名请不要含有中文!"));
         } else {
-          callback()
+          callback();
         }
       }
-      callback()
+      callback();
     },
-    checkData2 (rule, value, callback) {
+    checkData2(rule, value, callback) {
       if (value) {
         if (/[\u4E00-\u9FA5]/g.test(value)) {
-          callback(new Error('密码请不要含有中文!'))
+          callback(new Error("密码请不要含有中文!"));
         } else {
-          callback()
+          callback();
         }
       }
-      callback()
+      callback();
     },
-    submitForm (formName) {
+    submitForm(formName) {
       this.$refs[formName].validate((valid) => {
         if (valid) {
           this.$axios({
-            url: '/users/login',
-            method: 'post',
+            url: "/users/login",
+            method: "post",
             params: {
               username: this.loginForm.username,
-              password: this.loginForm.password
-            }
+              password: this.loginForm.password,
+            },
           }).then((res) => {
             // const jwt = res.headers["authorization"];
-            // this.$store.commit("SET_TOKEN,jwt");
+            //this.$store.commit("SET_TOKEN,jwt");
             // window.localStorage["token"] = JSON.stringify(res.data.data.token);
-            console.log(res.data.token)
+            console.log(res.data.token);
             if (res.data.state === 2000) {
-              if (typeof res.data.token !== 'undefined') {
-                window.localStorage.setItem('token', res.data.token)
+              if (typeof res.data.token != "undefined") {
+                window.localStorage.setItem("token", res.data.token);
               }
-              this.$router.push('/index')
+              this.$router.push("/index");
             } else if (res.data.state === 6000) {
-              Element.Message.error('登陆失败,用户名或密码错误')
+              Element.Message.error("登陆失败,用户名或密码错误");
             } else if (res.data.state === 8000) {
-              Element.Message.error('登陆失败,用户名或密码错误')
+              Element.Message.error("登陆失败,用户名或密码错误");
             } else {
-              Element.Message.error('出现了一些意料之外的错误,请稍后再试')
+              Element.Message.error("出现了一些意料之外的错误,请稍后再试");
             }
-          })
+          });
         } else {
-          console.log('error submit!!')
-          return false
+          console.log("error submit!!");
+          return false;
         }
-      })
+      });
     },
-    resetForm (formName) {
-      this.$refs[formName].resetFields()
-    }
+    resetForm(formName) {
+      this.$refs[formName].resetFields();
+    },
     // getCaptcha() {
     //   this.$axios.get("/captcha").then((res) => {
     //     console.log("/captcha");
@@ -149,11 +149,11 @@ export default {
     //     this.captchaImg = res.data.data.captchaImg;
     //   });
     // },
-  }
+  },
   // created() {
   //   this.getCaptcha();
   // },
-}
+};
 </script>
 
 <style scoped>

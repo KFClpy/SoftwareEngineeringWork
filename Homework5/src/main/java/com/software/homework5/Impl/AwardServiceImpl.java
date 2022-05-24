@@ -85,4 +85,9 @@ public class AwardServiceImpl implements AwardService {
         }
         return getAwardTable(username);
     }
+
+    @Override
+    public Award getAward(Integer aid) {
+        return awardMapper.findByAid(aid);
+    }
 }

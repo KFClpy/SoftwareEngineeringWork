@@ -9,7 +9,6 @@
     text-color="#fff"
     active-text-color="#ffd04b"
   >
-
     <h3 style="font-size: 30px"><i :class="'el-icon-s-unfold'"></i></h3>
     <el-menu-item
       :index="item.path"
@@ -45,66 +44,72 @@
 
 <script>
 export default {
-  data () {
+  data() {
     return {
       menu: [
         {
-          path: '/index',
-          name: 'Index',
-          label: '主页',
-          icon: 's-home'
+          path: "/index",
+          name: "Index",
+          label: "主页",
+          icon: "s-home",
         },
         {
-          path: '/sys/user',
-          name: 'SysUser',
-          label: '用户信息',
-          icon: 'user'
+          path: "/user",
+          name: "SysUser",
+          label: "用户设置",
+          icon: "user",
         },
         {
-          label: '其他',
-          icon: 's-unfold',
+          path: "/prize",
+          name: "SysPrize",
+          label: "奖品设置",
+          icon: "goods",
+        },
+        {
+          label: "其他",
+          icon: "s-unfold",
           children: [
             {
-              path: 'sys/help',
-              name: 'SysHelp',
-              label: '帮助',
-              icon: 'tickets'
+              path: "/help",
+              name: "SysHelp",
+              label: "修改密码",
+              icon: "tickets",
             },
             {
-              path: 'sys/ours',
-              name: 'SysOurs',
-              label: '关于我们',
-              icon: 'user-solid'
-            }
-          ]
-        }
-      ]
-    }
+              path: "/ours",
+              name: "SysOurs",
+              label: "关于我们",
+              icon: "user-solid",
+            },
+          ],
+        },
+      ],
+    };
   },
   methods: {
-    handleOpen (key, keyPath) {
-      console.log(key, keyPath)
+    handleOpen(key, keyPath) {
+      console.log(key, keyPath);
     },
-    handleClose (key, keyPath) {
-      console.log(key, keyPath)
+    handleClose(key, keyPath) {
+      console.log(key, keyPath);
     },
-    clickMenu (item) {
-      this.$router.push({ name: item.name })
-      this.$store.commit('selectMenu', item)
-    }
+    clickMenu(item) {
+      this.$router.push({ name: item.name });
+      this.$store.commit("selectMenu", item);
+    },
   },
   computed: {
-    noChildren () {
-      return this.menu.filter((item) => !item.children)
+    noChildren() {
+      return this.menu.filter((item) => !item.children);
     },
-    hasChildren () {
-      return this.menu.filter((item) => item.children)
+    hasChildren() {
+      return this.menu.filter((item) => item.children);
     },
-    isCollapse () {
-      return this.$store.state.tab.isCollapse
-    }
-  }
-}
+    isCollapse() {
+      return this.$store.state.tab.isCollapse;
+    },
+  },
+};
 </script>
 
 <style lang="scss" scoped>
