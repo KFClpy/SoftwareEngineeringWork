@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
+import org.springframework.http.client.HttpComponentsClientHttpRequestFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
@@ -35,7 +36,7 @@ public class GptSerciceImpl implements GptService {
         postData.put("stop", stoplist);
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
-        headers.add("Authorization", "Bearer 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");
+        headers.add("Authorization", "Bearer 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");
         HttpEntity<JSONObject> httpEntity = new HttpEntity<>(postData, headers);
         JSONObject json = JSONObject.parseObject(restTemplate.postForEntity(url, httpEntity, String.class).getBody());
         JSONArray jsonArray = json.getJSONArray("choices");

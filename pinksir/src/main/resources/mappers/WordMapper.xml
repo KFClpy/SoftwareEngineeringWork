@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
+        "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper  namespace="com.example.pinksir.dao.WordMapper">
+    <resultMap type="com.example.pinksir.entity.Word" id="WordEntityMap">
+        <id column="wid" property="wid"/>
+        <result column="word_name" property="word_name"/>
+        <result column="word_type" property="word_type"/>
+        <result column="word_level" property="word_level"/>
+        <result column="word_way" property="word_way"/>
+    </resultMap>
+    <insert id="insert" useGeneratedKeys="true" keyProperty="wid">
+        INSERT INTO word_info (
+            word_name,word_type,word_level,word_way
+        ) VALUES (
+                     #{word_name}, #{word_type},#{word_level}, #{word_way}
+                 )
+    </insert>
+    <select id="findByPage" resultMap="WordEntityMap">
+        select * from word_info limit ${(PageId-1)*6},6
+    </select>
+    <select id="findByName" resultMap="WordEntityMap">
+        select * from word_info where word_name=#{word_name} limit ${(PageId-1)*6},6
+    </select>
+    <select id="findByType" resultMap="WordEntityMap">
+        select * from word_info where word_type=#{word_type} limit ${(PageId-1)*6},6
+    </select>
+    <select id="findAllWord" resultType="string">
+        select word_name from word_info
+    </select>
+    <select id="countAllWord" resultType="int">
+        select count(*) from word_info
+    </select>
+    <select id="countWordByType" resultType="int">
+        select count(*) from word_info where word_type=#{word_type}
+    </select>
+ </mapper>

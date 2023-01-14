@@ -12,9 +12,9 @@ public class WordFilterUtil {
     String filePath;
     public  void initGoldenEyes() {
         ge = new XEyes();
-//        String path ="F:\\BaiduNetdiskDownload\\" +
-//                "SoftwareEngineeringWork\\pinksir\\src\\main\\resources\\conf\\sensitive.txt";
-        String path="//home//files//sensitive.txt";
+        String path ="F:\\BaiduNetdiskDownload\\" +
+                "SoftwareEngineeringWork\\pinksir\\src\\main\\resources\\conf\\sensitive.txt";
+//        String path="//home//files//sensitive.txt";
         File file = new File(path);
         ge.indexSensitiveFromFile(file);
         System.out.println("reload configure " + file.getAbsolutePath());
