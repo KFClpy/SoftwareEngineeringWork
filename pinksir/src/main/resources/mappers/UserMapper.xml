@@ -10,10 +10,22 @@
         <result column="ban_date" property="ban_date"/>
     </resultMap>
     <insert id="updateQuser">
-        insert into user_info (uname,group_num,unum,ban_num,ban_date)
+        insert into user_info (uname,umemo,group_num,unum,ban_num,ban_date)
         values (
-                #{uname},#{group_num},#{unum},#{ban_num},#{ban_date}
+                #{uname},#{umemo},#{group_num},#{unum},#{ban_num},#{ban_date}
                 )
         on duplicate key update ban_num=ban_num+1
     </insert>
+    <select id="findByPage" resultMap="UserEntityMap">
+        select uname,umemo,group_num,unum,sum(ban_num)'ban_num' from user_info where group_num=#{group_num}  group by unum limit ${(PageId-1)*6},6
+    </select>
+    <select id="findByNum" resultMap="UserEntityMap">
+        select uname,umemo,group_num,unum,sum(ban_num)'ban_num' from user_info where group_num=#{group_num} and unum=#{unum}  group by unum limit ${(PageId-1)*6},6
+    </select>
+    <select id="countAll" resultType="int">
+        select count(distinct unum) from user_info where group_num=#{group_num}
+    </select>
+    <delete id="deleteByGroupNum">
+        delete from user_info where group_num=#{group_num}
+    </delete>
 </mapper>

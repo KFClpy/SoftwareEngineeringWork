@@ -6,6 +6,7 @@ import java.util.Objects;
 public class Quser {
 
     private String uname;
+    private String umemo;
     private String group_num;
     private String unum;
     private Integer ban_num;
@@ -25,6 +26,14 @@ public class Quser {
 
     public String getGroup_num() {
         return group_num;
+    }
+
+    public String getUmemo() {
+        return umemo;
+    }
+
+    public void setUmemo(String umemo) {
+        this.umemo = umemo;
     }
 
     public void setGroup_num(String group_num) {
@@ -55,24 +64,24 @@ public class Quser {
         this.ban_date = ban_date;
     }
 
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Quser quser = (Quser) o;
-        return uname.equals(quser.uname) && group_num.equals(quser.group_num) && unum.equals(quser.unum) && ban_num.equals(quser.ban_num) && ban_date.equals(quser.ban_date);
+        return uname.equals(quser.uname) && umemo.equals(quser.umemo) && group_num.equals(quser.group_num) && unum.equals(quser.unum) && ban_num.equals(quser.ban_num) && ban_date.equals(quser.ban_date);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(uname, group_num, unum, ban_num, ban_date);
+        return Objects.hash(uname, umemo, group_num, unum, ban_num, ban_date);
     }
 
     @Override
     public String toString() {
         return "Quser{" +
                 "uname='" + uname + '\'' +
+                ", umemo='" + umemo + '\'' +
                 ", group_num='" + group_num + '\'' +
                 ", unum='" + unum + '\'' +
                 ", ban_num=" + ban_num +
