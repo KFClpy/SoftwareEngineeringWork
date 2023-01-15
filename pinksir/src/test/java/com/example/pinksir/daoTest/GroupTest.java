@@ -27,7 +27,7 @@ public class GroupTest {
     public void test()
     {
         List<Group>list=groupMapper.findByPage(2);
-        List<Group>list2=groupMapper.findByNum("2291897613",1);
+        List<Group>list2=groupMapper.findByNum("1162806685",1);
         Integer num=groupMapper.countAllGroup();
         System.out.println(num);
         System.out.println(Arrays.toString(list2.toArray()));

@@ -4,7 +4,7 @@
 <mapper  namespace="com.example.pinksir.dao.GroupMapper">
     <resultMap type="com.example.pinksir.entity.Group" id="GroupEntityMap">
         <id column="group_num" property="group_num"/>
-
+        <result column="group_content" property="group_content"/>
     </resultMap>
     <insert id="insert" useGeneratedKeys="true" keyProperty="group_num">
         INSERT INTO group_info (

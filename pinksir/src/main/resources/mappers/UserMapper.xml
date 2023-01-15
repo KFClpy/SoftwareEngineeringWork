@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
+        "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper  namespace="com.example.pinksir.dao.UserMapper">
+    <resultMap type="com.example.pinksir.entity.Quser" id="UserEntityMap">
+        <result column="uname" property="uname"/>
+        <result column="group_num" property="group_num"/>
+        <result column="unum" property="unum"/>
+        <result column="ban_num" property="ban_num"/>
+        <result column="ban_date" property="ban_date"/>
+    </resultMap>
+    <insert id="updateQuser">
+        insert into user_info (uname,group_num,unum,ban_num,ban_date)
+        values (
+                #{uname},#{group_num},#{unum},#{ban_num},#{ban_date}
+                )
+        on duplicate key update ban_num=ban_num+1
+    </insert>
+</mapper>
