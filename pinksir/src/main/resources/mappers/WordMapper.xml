@@ -34,4 +34,17 @@
     <select id="countWordByType" resultType="int">
         select count(*) from word_info where word_type=#{word_type}
     </select>
+    <update id="updateByWid">
+        update
+            word_info
+        set
+            word_name=#{word_name},
+            word_type=#{word_type},
+            word_level=#{word_level},
+            word_way=#{word_way}
+        where wid=#{wid}
+    </update>
+    <delete id="deleteByWid">
+        delete from word_info where wid=#{wid}
+    </delete>
  </mapper>

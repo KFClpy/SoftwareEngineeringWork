@@ -22,4 +22,15 @@
     <select id="countAllGroup" resultType="int">
         select count(*) from group_info
     </select>
+    <update id="updateByNum">
+        update
+            group_info
+        set
+            group_content=#{group_content}
+        where
+            group_num=#{group_num}
+    </update>
+    <delete id="deleteByNum">
+        delete from group_info where group_num=#{group_num}
+    </delete>
 </mapper>

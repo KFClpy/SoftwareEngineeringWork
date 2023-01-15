@@ -9,7 +9,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import java.util.List;
 
 @SpringBootTest
-public class mapperTest {
+public class WordTest {
     @Autowired
     WordMapper wordMapper;
     @Test
@@ -56,6 +56,17 @@ public class mapperTest {
     public void countByType()
     {
         Integer num=wordMapper.countWordByType(1);
+        System.out.println(num);
+    }
+    @Test
+    public void updateTest()
+    {
+        Integer num=wordMapper.updateByWid(6,"123",1,1,1);
+    }
+    @Test
+    public void deleteTest()
+    {
+        Integer num= wordMapper.deleteByWid(6);
         System.out.println(num);
     }
 }

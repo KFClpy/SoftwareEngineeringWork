@@ -12,4 +12,6 @@ public interface GroupMapper {
     List<Group> findByNum(@Param("group_num")String group_num,@Param("PageId") Integer PageId);
     List<Group> findByPage(Integer PageId);
     Integer countAllGroup();
+    Integer updateByNum(@Param("group_num") String group_num,@Param("group_content") String group_content);
+    Integer deleteByNum(@Param("group_num")String group_num);
 }

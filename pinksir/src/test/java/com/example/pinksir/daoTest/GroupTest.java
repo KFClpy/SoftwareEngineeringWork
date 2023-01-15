@@ -32,4 +32,16 @@ public class GroupTest {
         System.out.println(num);
         System.out.println(Arrays.toString(list2.toArray()));
     }
+    @Test
+    public void updatetest()
+    {
+        Integer num= groupMapper.updateByNum("2291897613","傻逼东西");
+        System.out.println(num);
+    }
+    @Test
+    public void deletetest()
+    {
+        Integer num=groupMapper.deleteByNum("2291897613");
+        System.out.println(num);
+    }
 }
