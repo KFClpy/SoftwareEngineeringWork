@@ -23,7 +23,7 @@ public class WordServiceTest {
     @Test
     public void deletetest()
     {
-        List<Word>list=wordService.deleteByWid(1,5);
+        List<Word>list=wordService.deleteByWid(1,new Integer[]{7,8,9,10,11,13});
         System.out.println(Arrays.toString(list.toArray()));
     }
     @Test
@@ -38,7 +38,8 @@ public class WordServiceTest {
         List<Word>list=wordService.getWordTable(1);
         List<Word>list2=wordService.findByType(1,5);
         List<Word>list3=wordService.findByWname("test");
-        System.out.println(Arrays.toString(list3.toArray()));
+        List<String>list4=wordService.getAllWord();
+        System.out.println(Arrays.toString(list4.toArray()));
     }
     @Test
     public void counttest()

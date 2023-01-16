@@ -12,7 +12,8 @@ public interface WordService {
     public List<Word>findByType(Integer PageId,Integer word_type);
     public List<Word>updateWordTable(Integer PageId,Integer wid,String word_name,
                                      Integer word_type,Integer word_level,Integer word_way);
-    public List<Word>deleteByWid(Integer PageId,Integer wid);
+    public List<Word>deleteByWid(Integer PageId,Integer []wid);
     public Integer countAll();
     public Integer countByType(Integer word_type);
+    public List<String>getAllWord();
 }

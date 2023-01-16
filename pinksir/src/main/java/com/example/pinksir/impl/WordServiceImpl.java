@@ -57,11 +57,15 @@ public class WordServiceImpl implements WordService {
     }
 
     @Override
-    public List<Word> deleteByWid(Integer PageId, Integer wid) {
-        Integer rows=wordMapper.deleteByWid(wid);
-        if(rows!=1)
+    public List<Word> deleteByWid(Integer PageId, Integer []wid) {
+        int rows=0;
+        for(Integer id:wid)
         {
-            throw new DeleteException("删除时错误");
+            rows+=wordMapper.deleteByWid(id);
+        }
+        if(rows!=wid.length)
+        {
+            throw new DeleteException("删除信息时错误");
         }
         return getWordTable(PageId);
     }
@@ -74,5 +78,10 @@ public class WordServiceImpl implements WordService {
     @Override
     public Integer countByType(Integer word_type) {
         return wordMapper.countWordByType(word_type);
+    }
+
+    @Override
+    public List<String> getAllWord() {
+        return wordMapper.findAllWord();
     }
 }

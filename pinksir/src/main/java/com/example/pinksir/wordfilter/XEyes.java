@@ -1,5 +1,11 @@
 package com.example.pinksir.wordfilter;
 
+import com.example.pinksir.dao.WordMapper;
+import com.example.pinksir.service.WordService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
@@ -9,7 +15,6 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.List;
-
 public class XEyes {
     protected ACAutomaton ac = new ACAutomaton();
 
@@ -33,6 +38,19 @@ public class XEyes {
         } catch (IOException localIOException) {
             localIOException.printStackTrace();
         }
+    }
+    public void indexSensitiveFromDB(List<String>list)
+    {
+        int i=0;
+        for(String str:list)
+        {
+            if (str.length() != 0) {
+                SensitiveInfo localSensitiveInfo = new SensitiveInfo(i, str);
+                i++;
+                this.ac.addBranch(localSensitiveInfo);
+            }
+        }
+        this.ac.addBud();
     }
 
     public List findSensitive(String paramString) {
