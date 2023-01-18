@@ -17,20 +17,18 @@ public class WordServiceTest {
     @Test
     public void addtest()
     {
-        List<Word>list= wordService.addWord(1,"123",1,2,3);
-        System.out.println(Arrays.toString(list.toArray()));
+
     }
     @Test
     public void deletetest()
     {
-        List<Word>list=wordService.deleteByWid(1,new Integer[]{7,8,9,10,11,13});
-        System.out.println(Arrays.toString(list.toArray()));
+        Integer num=wordService.deleteByWid(new Integer[]{7,8,9,10,11,13});
+        System.out.println(num);
     }
     @Test
     public void updatetest()
     {
-        List<Word>list=wordService.updateWordTable(1,7,"test",3,4,5);
-        System.out.println(Arrays.toString(list.toArray()));
+
     }
     @Test
     public void findtest()

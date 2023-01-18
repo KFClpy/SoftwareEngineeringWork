@@ -17,7 +17,7 @@ public class WordServiceImpl implements WordService {
     @Autowired
     WordMapper wordMapper;
     @Override
-    public List<Word> addWord(Integer PageId, String word_name, Integer word_type, Integer word_level, Integer word_way) {
+    public Integer addWord( String word_name, Integer word_type, Integer word_level, Integer word_way) {
         Word word=new Word();
         word.setWord_way(word_way);
         word.setWord_level(word_level);
@@ -28,7 +28,7 @@ public class WordServiceImpl implements WordService {
         {
             throw new InsertException("插入时错误");
         }
-        return getWordTable(PageId);
+        return 2000;
     }
 
     @Override
@@ -47,17 +47,22 @@ public class WordServiceImpl implements WordService {
     }
 
     @Override
-    public List<Word> updateWordTable(Integer PageId, Integer wid, String word_name, Integer word_type, Integer word_level, Integer word_way) {
+    public List<Word> findByBoth(Integer PageId, String word_name, Integer word_type) {
+        return  wordMapper.findByBoth(PageId,word_type,word_name);
+    }
+
+    @Override
+    public Integer updateWordTable(Integer wid, String word_name, Integer word_type, Integer word_level, Integer word_way) {
         Integer rows=wordMapper.updateByWid(wid,word_name,word_type,word_level,word_way);
         if(rows!=1)
         {
             throw new UpdateException("更新时错误");
         }
-        return getWordTable(PageId);
+        return 2000;
     }
 
     @Override
-    public List<Word> deleteByWid(Integer PageId, Integer []wid) {
+    public Integer deleteByWid(Integer []wid) {
         int rows=0;
         for(Integer id:wid)
         {
@@ -67,7 +72,7 @@ public class WordServiceImpl implements WordService {
         {
             throw new DeleteException("删除信息时错误");
         }
-        return getWordTable(PageId);
+        return 2000;
     }
 
     @Override

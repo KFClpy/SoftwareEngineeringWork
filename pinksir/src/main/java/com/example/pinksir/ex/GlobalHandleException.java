@@ -1,8 +1,12 @@
 package com.example.pinksir.ex;
 
 import com.alibaba.fastjson.JSONObject;
+import org.springframework.dao.DataAccessException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
+
+import java.sql.SQLException;
+import java.sql.SQLIntegrityConstraintViolationException;
 
 @RestControllerAdvice
 public class GlobalHandleException {
@@ -28,4 +32,14 @@ public class GlobalHandleException {
         }
         return obj;
     }
+    @ExceptionHandler(SQLException.class)
+    public JSONObject mySqlException(SQLException e){
+        JSONObject obj=new JSONObject();
+        if (e instanceof SQLIntegrityConstraintViolationException){
+            obj.put("state",9000);
+            obj.put("message","插入重复值");
+        }
+        return  obj;
+    }
+
 }

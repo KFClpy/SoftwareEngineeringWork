@@ -25,6 +25,9 @@
     <select id="findByType" resultMap="WordEntityMap">
         select * from word_info where word_type=#{word_type} limit ${(PageId-1)*6},6
     </select>
+    <select id="findByBoth" resultMap="WordEntityMap">
+        select  * from word_info where word_type=#{word_type} and word_name=#{word_name} limit ${(PageId-1)*6},6
+    </select>
     <select id="findAllWord" resultType="string">
         select word_name from word_info
     </select>

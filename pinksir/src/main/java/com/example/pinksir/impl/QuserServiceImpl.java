@@ -25,7 +25,7 @@ public class QuserServiceImpl implements QuserService {
     }
 
     @Override
-    public List<Quser> updateQuserTable(Integer PageId, String uname, String group_num, String unum, Integer ban_num, Date ban_date, String umemo) {
+    public Integer updateQuserTable(String uname, String group_num, String unum, Integer ban_num, Date ban_date, String umemo) {
         Quser quser=new Quser();
         quser.setBan_num(ban_num);
         quser.setUname(uname);
@@ -37,7 +37,7 @@ public class QuserServiceImpl implements QuserService {
         if(rows==0){
             throw new UpdateException("更新时错误");
         }
-        return getQuserTable(PageId,group_num);
+        return 2000;
     }
 
     @Override
@@ -46,12 +46,12 @@ public class QuserServiceImpl implements QuserService {
     }
 
     @Override
-    public List<Quser> delelteAll(Integer PageId,String group_num) {
+    public Integer delelteAll(String group_num) {
         Integer rows=userMapper.deleteByGroupNum(group_num);
         if(rows==0)
         {
             throw new UpdateException("删除时错误");
         }
-        return getQuserTable(PageId,group_num);
+        return 2000;
     }
 }

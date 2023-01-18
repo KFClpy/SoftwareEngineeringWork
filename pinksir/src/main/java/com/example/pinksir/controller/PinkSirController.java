@@ -57,7 +57,7 @@ public class PinkSirController {
             String str = getobj.toString();
             log.info(str);
             if (filterService.isInvalid(str)) {
-                quserService.updateQuserTable(1,sender.getString("nickname"),
+                quserService.updateQuserTable(sender.getString("nickname"),
                         group_id,sender.getString("user_id"),1,
                         new Date(System.currentTimeMillis()),sender.getString("card"));
                 obj.put("delete", "true");

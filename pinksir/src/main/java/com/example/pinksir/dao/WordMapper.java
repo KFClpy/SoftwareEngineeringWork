@@ -19,4 +19,5 @@ public interface WordMapper {
                         @Param("word_type") Integer word_type,@Param("word_level") Integer word_level,
                         @Param("word_way") Integer word_way);
     Integer deleteByWid(@Param("wid") Integer wid);
+    List<Word>findByBoth(@Param("PageId") Integer PageId,@Param("word_type")Integer word_type,@Param("word_name")String word_name);
 }

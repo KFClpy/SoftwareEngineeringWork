@@ -27,7 +27,7 @@ public class GroupServiceImpl implements GroupService {
     }
 
     @Override
-    public List<Group> deleteGroupTable(Integer PageId,String[] group_nums) {
+    public Integer deleteGroupTable(String[] group_nums) {
         int rows=0;
         for(String group_num:group_nums)
         {
@@ -37,21 +37,21 @@ public class GroupServiceImpl implements GroupService {
         {
             throw new DeleteException("删除信息时错误");
         }
-        return getGroupTable(PageId);
+        return 2000;
     }
 
     @Override
-    public List<Group> updateGroupTable(Integer PageId, String group_num, String group_content) {
+    public Integer updateGroupTable(String group_num, String group_content) {
         int rows=groupMapper.updateByNum(group_num,group_content);
         if(rows!=1)
         {
             throw new UpdateException("更新信息时错误");
         }
-        return getGroupTable(PageId);
+        return 2000;
     }
 
     @Override
-    public List<Group> addGroup(Integer PageId, String group_num, String group_content) {
+    public Integer addGroup(String group_num, String group_content) {
         Group group=new Group();
         group.setGroup_num(group_num);
         group.setGroup_content(group_content);
@@ -60,7 +60,7 @@ public class GroupServiceImpl implements GroupService {
         {
             throw new InsertException("插入信息时错误");
         }
-        return getGroupTable(PageId);
+        return 2000;
     }
 
     @Override
