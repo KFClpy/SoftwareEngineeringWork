@@ -13,4 +13,5 @@ public interface UserMapper {
     List<Quser> findByNum(@Param("unum") String unum,@Param("group_num") String group_num,@Param("PageId") Integer PageId);
     Integer countAll(@Param("group_num") String group_num);
     Integer deleteByGroupNum(@Param("group_num") String group_num);
+    List<Quser> findByQnumAndGroupNum(@Param("group_num")String group_num,@Param("unum")String unum);
 }

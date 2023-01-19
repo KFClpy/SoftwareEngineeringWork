@@ -12,4 +12,5 @@ public interface QuserService {
                                  String unum, Integer ban_num, Date ban_date,String umemo);
     Integer countAllTable(String group_num);
     Integer delelteAll(String group_num);
+    List<Quser> getQuserData(String group_num,String unum);
 }

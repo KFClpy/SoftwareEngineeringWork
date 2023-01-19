@@ -28,4 +28,7 @@
     <delete id="deleteByGroupNum">
         delete from user_info where group_num=#{group_num}
     </delete>
+    <select id="findByQnumAndGroupNum" resultMap="UserEntityMap">
+        select * from user_info where group_num=#{group_num} and unum=#{unum}
+    </select>
 </mapper>

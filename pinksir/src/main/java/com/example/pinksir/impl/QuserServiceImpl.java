@@ -54,4 +54,9 @@ public class QuserServiceImpl implements QuserService {
         }
         return 2000;
     }
+
+    @Override
+    public List<Quser> getQuserData(String group_num, String unum) {
+        return userMapper.findByQnumAndGroupNum(group_num,unum);
+    }
 }

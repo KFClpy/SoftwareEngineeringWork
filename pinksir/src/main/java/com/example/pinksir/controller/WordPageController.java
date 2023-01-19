@@ -2,6 +2,7 @@ package com.example.pinksir.controller;
 
 import com.alibaba.fastjson.JSONObject;
 import com.example.pinksir.entity.Word;
+import com.example.pinksir.runner.InitialCache;
 import com.example.pinksir.service.WordService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -35,6 +36,7 @@ public class WordPageController {
                 (int)response.get("word_type"),(int)response.get("word_level"),(int)response.get("word_way")));
         obj.put("state",2000);
         obj.put("message","成功");
+        InitialCache.setGe(wordService.getAllWord());
         return obj;
     }
     @PostMapping("add")
@@ -46,6 +48,7 @@ public class WordPageController {
                 (int)response.get("word_type"),(int)response.get("word_level"),(int)response.get("word_way")));
         obj.put("state",2000);
         obj.put("message","成功");
+        InitialCache.setGe(wordService.getAllWord());
         return obj;
     }
     @PostMapping("delete")
@@ -54,6 +57,7 @@ public class WordPageController {
         JSONObject obj=new JSONObject();
         obj.put("state",wordService.deleteByWid(new Integer[]{id}));
         obj.put("message","成功");
+        InitialCache.setGe(wordService.getAllWord());
         return obj;
     }
     @PostMapping("search")
@@ -89,6 +93,7 @@ public class WordPageController {
         JSONObject obj=new JSONObject();
         obj.put("state",wordService.deleteByWid(ids));
         obj.put("message","操作成功");
+        InitialCache.setGe(wordService.getAllWord());
         return obj;
     }
 

@@ -31,7 +31,6 @@ public class FilterServiceImpl implements FilterService {
 
     @Override
     public boolean isInvalid(String str) {
-        InitialCache.setGe(wordService.getAllWord());
         List<ACAutomaton.Match> list = InitialCache.getGe().findSensitive(str);
         List<String> forbidWordList = new ArrayList<>();
         for (Iterator<ACAutomaton.Match> iter = list.iterator(); iter.hasNext(); ) {
