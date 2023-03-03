@@ -11,36 +11,45 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.web.client.RestTemplate;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Properties;
 
 @SpringBootTest
 public class GPT3Test {
     @Autowired
     private RestTemplate restTemplate;
+
     @Test
-    public void PostTest()
-    {
-        String url="https://api.openai.com/v1/completions";
-        JSONObject postData=new JSONObject();
-        postData.put("model","text-davinci-003");
-        postData.put("prompt","世界上最伟大的滑雪运动员是谁");
-        postData.put("max_tokens",4000);
-        postData.put("temperature",0);
-        postData.put("top_p",1);
-        postData.put("frequency_penalty",0);
-        postData.put("presence_penalty",0.6);
-        List<String> list=new ArrayList<>();
-        list.add(" Human:");
-        list.add(" AI:");
-        postData.put("stop",list);
-        HttpHeaders headers=new HttpHeaders();
+    public void PostTest() {
+        String str = "你是谁";
+        String url = "https://api.openai.com/v1/chat/completions";
+        System.setProperty("java.net.useSystemProxies", "true");
+        JSONObject postData = new JSONObject();
+        postData.put("model", "gpt-3.5-turbo");
+        JSONObject messages = new JSONObject();
+        System.getProperties().put("socksProxySet","true");
+        System.getProperties().put("socksProxyHost","127.0.0.1");
+        System.getProperties().put("socksProxyPort","10793");
+        messages.put("role", "user");
+        messages.put("content", str);
+        List<JSONObject>list=new ArrayList<>();
+        list.add(messages);
+        postData.put("messages",list);
+        HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
-        headers.add("Authorization","Bearer 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");
-        HttpEntity<JSONObject> httpEntity=new HttpEntity<>(postData,headers);
-        JSONObject json=JSONObject.parseObject(restTemplate.postForEntity(url,httpEntity,String.class).getBody());
-        JSONArray jsonArray=json.getJSONArray("choices");
-        JSONObject jsonObject=jsonArray.getJSONObject(0);
-        System.out.println(jsonObject.get("text"));
+        headers.add("Authorization", "Bearer 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");
+        HttpEntity<JSONObject> httpEntity = new HttpEntity<>(postData, headers);
+        JSONObject json = JSONObject.parseObject(restTemplate.postForEntity(url, httpEntity, String.class).getBody());
+        JSONArray jsonArray = json.getJSONArray("choices");
+        JSONObject jsonObject = jsonArray.getJSONObject(0);
+        JSONObject message=(JSONObject) jsonObject.get("message");
+        String input=message.get("content").toString().substring(2);
+        System.out.println(input);
     }
 }

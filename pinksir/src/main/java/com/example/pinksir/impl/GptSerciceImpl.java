@@ -2,7 +2,10 @@ package com.example.pinksir.impl;
 
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
+import com.example.pinksir.controller.PinkSirController;
 import com.example.pinksir.service.GptService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
@@ -17,31 +20,31 @@ import java.util.List;
 public class GptSerciceImpl implements GptService {
     @Autowired
     RestTemplate restTemplate;
+    private static final Logger log = LoggerFactory.getLogger(PinkSirController.class);
     @Override
 
     public void gpt3(String str,String group_id)
     {
-        String url = "https://api.openai.com/v1/completions";
+        String url = "https://api.openai.com/v1/chat/completions";
+        System.setProperty("java.net.useSystemProxies", "true");
         JSONObject postData = new JSONObject();
-        postData.put("model", "text-davinci-003");
-        postData.put("prompt", str);
-        postData.put("max_tokens", 4000);
-        postData.put("temperature", 0);
-        postData.put("top_p", 1);
-        postData.put("frequency_penalty", 0);
-        postData.put("presence_penalty", 0.6);
-        List<String> stoplist = new ArrayList<>();
-        stoplist.add(" Human:");
-        stoplist.add(" AI:");
-        postData.put("stop", stoplist);
+        postData.put("model", "gpt-3.5-turbo");
+        JSONObject messages = new JSONObject();
+        messages.put("role", "user");
+        messages.put("content", str);
+        List<JSONObject>list=new ArrayList<>();
+        list.add(messages);
+        postData.put("messages",list);
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
-        headers.add("Authorization", "Bearer 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");
+        headers.add("Authorization", "Bearer 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");
         HttpEntity<JSONObject> httpEntity = new HttpEntity<>(postData, headers);
         JSONObject json = JSONObject.parseObject(restTemplate.postForEntity(url, httpEntity, String.class).getBody());
         JSONArray jsonArray = json.getJSONArray("choices");
         JSONObject jsonObject = jsonArray.getJSONObject(0);
-        String input=jsonObject.getString("text").substring(2);
+        JSONObject message=(JSONObject) jsonObject.get("message");
+        String input=message.get("content").toString().substring(2);
+        log.info("\ngroup_id:"+group_id+"\noutput:"+input);
         String go_cq_url="http://127.0.0.1:5700/send_group_msg";
         JSONObject gocqPostData=new JSONObject();
         gocqPostData.put("group_id",group_id);
