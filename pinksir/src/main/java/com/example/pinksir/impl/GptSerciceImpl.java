@@ -37,13 +37,15 @@ public class GptSerciceImpl implements GptService {
         postData.put("messages",list);
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
-        headers.add("Authorization", "Bearer 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");
+        headers.add("Authorization", "Bearer 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");
         HttpEntity<JSONObject> httpEntity = new HttpEntity<>(postData, headers);
         JSONObject json = JSONObject.parseObject(restTemplate.postForEntity(url, httpEntity, String.class).getBody());
         JSONArray jsonArray = json.getJSONArray("choices");
         JSONObject jsonObject = jsonArray.getJSONObject(0);
         JSONObject message=(JSONObject) jsonObject.get("message");
-        String input=message.get("content").toString().substring(2);
+        String input= (String) message.get("content");
+        if(message.get("content").toString().indexOf(1)=='\n')
+            input=message.get("content").toString().substring(2);
         log.info("\ngroup_id:"+group_id+"\noutput:"+input);
         String go_cq_url="http://127.0.0.1:5700/send_group_msg";
         JSONObject gocqPostData=new JSONObject();

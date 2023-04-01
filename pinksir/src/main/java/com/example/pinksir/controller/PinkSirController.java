@@ -64,6 +64,7 @@ public class PinkSirController {
                 obj.put("reply", filterService.randomReply());
             }
             else {
+
                 String flag = "[CQ:at,qq=1374457571]";
                 int index = str.indexOf(flag);
                 if (index == -1) return null;
