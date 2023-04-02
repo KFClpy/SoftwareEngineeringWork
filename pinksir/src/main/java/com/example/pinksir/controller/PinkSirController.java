@@ -14,6 +14,7 @@ import com.google.common.base.Joiner;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
@@ -36,6 +37,9 @@ public class PinkSirController {
     private QuserService quserService;
     @Autowired
     private PinkService pinkService;
+
+    @Value("${gpt_open}")
+    private  boolean gpt_open;
     private static final Logger log = LoggerFactory.getLogger(PinkSirController.class);
 
     @PostMapping("")
@@ -64,19 +68,18 @@ public class PinkSirController {
                 obj.put("reply", filterService.randomReply());
             }
             else {
-
-                String flag = "[CQ:at,qq=1374457571]";
-                int index = str.indexOf(flag);
-                if (index == -1) return null;
-                String remains = str.substring(index + flag.length());
-                new Thread()
-                {
-                    @Override
-                    public void run()
-                    {
-                        gptService.gpt3(remains,group_id);
-                    }
-                }.start();
+                if(gpt_open) {
+                    String flag = "[CQ:at,qq=1374457571]";
+                    int index = str.indexOf(flag);
+                    if (index == -1) return null;
+                    String remains = str.substring(index + flag.length());
+                    new Thread() {
+                        @Override
+                        public void run() {
+                            gptService.gpt3(remains, group_id);
+                        }
+                    }.start();
+                }
             }
 
         }

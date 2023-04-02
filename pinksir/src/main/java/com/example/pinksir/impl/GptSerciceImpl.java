@@ -37,7 +37,7 @@ public class GptSerciceImpl implements GptService {
         postData.put("messages",list);
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
-        headers.add("Authorization", "Bearer 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");
+        headers.add("Authorization", "Bearer ");
         HttpEntity<JSONObject> httpEntity = new HttpEntity<>(postData, headers);
         JSONObject json = JSONObject.parseObject(restTemplate.postForEntity(url, httpEntity, String.class).getBody());
         JSONArray jsonArray = json.getJSONArray("choices");
